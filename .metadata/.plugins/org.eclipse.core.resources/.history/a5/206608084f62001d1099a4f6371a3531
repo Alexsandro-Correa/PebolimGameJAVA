@@ -1,0 +1,43 @@
+package br.com.alexsandro.gamepebolim.players;
+
+import java.awt.image.BufferedImage;
+
+import br.com.alexsandro.gamepebolim.Game;
+
+public class Player extends Entity {
+
+	public int width, height;
+	public boolean up = false, down = false, left = false, right = false;
+
+	public static boolean dir;
+	public static boolean right_dir = false;
+	public static boolean left_dir = false;
+
+	public static BufferedImage rightPlayer;
+	public static BufferedImage leftPlayer;
+	public static BufferedImage centerPlayer;
+
+	public Player(int x, int y, int width, int height, BufferedImage sprite) {
+		super(x, y, width, height, sprite);
+
+		
+		centerPlayer = Game.sprite.getSprite(32, 32, 16, 16);
+		rightPlayer = Game.sprite.getSprite(0, 32, 16, 16);
+		leftPlayer = Game.sprite.getSprite(16 , 32, 16, 16);
+
+	public void tick() {
+		if (up == true) {
+			y--;
+		} else if (down == true) {
+			y++;
+		} else if (right == true) {
+			right_dir = true;
+		} else if (left == true) {
+			left_dir = true;
+		} else if (right = false && left == false) {
+			right_dir = false;
+			left_dir = false;
+		}
+	}
+
+}
