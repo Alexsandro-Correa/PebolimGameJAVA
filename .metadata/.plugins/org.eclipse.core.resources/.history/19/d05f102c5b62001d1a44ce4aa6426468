@@ -35,7 +35,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public TeamA teamA[] = new TeamA[1];
 	public TeamB teamB[] = new TeamB[1];
 	public GoalkeeperA keeperA[] = new GoalkeeperA[1];
-	public GoalkeeperB keeperB[] = new GoalkeeperB[1];
+	public GoalkeeperB keeperB[]= new GoalkeeperB[1];
 	public Ball ball[] = new Ball[1];
 
 	private BufferedImage image;
@@ -52,9 +52,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		entities = new ArrayList<Entity>();
 		sprite = new Sprites("/SpritesPebolim.png");
 		field = new Field("/map.png");
-
+		
 		entities.add(ball[0] = new Ball(48, 56, 16, 16, sprite.getSprite(0, 64, 16, 16)));
-
+		
 		// Goleiros A e B
 		entities.add(keeperB[0] = new GoalkeeperB(85, 56, 16, 16, sprite.getSprite(32, 32, 16, 16)));
 		entities.add(keeperA[0] = new GoalkeeperA(11, 56, 16, 16, sprite.getSprite(32, 48, 16, 16)));
@@ -85,6 +85,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		// Atacantes B
 		entities.add(teamB[0] = new TeamB(18, 66, 16, 16, sprite.getSprite(32, 0, 16, 16)));
 		entities.add(teamB[0] = new TeamB(18, 48, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		
+		
 
 	}
 
@@ -182,89 +184,83 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_W) {
 			TeamA.up = true;
-
+			
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			TeamA.down = true;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_A) {
 			TeamA.right = true;
-			GoalkeeperA.right = true;
-		} else if (e.getKeyCode() == KeyEvent.VK_D) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_D) {
 			TeamA.left = true;
-			GoalkeeperA.left = true;
-
+			
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			TeamB.up = true;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			TeamB.down = true;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			TeamB.right = true;
-			GoalkeeperB.right = true;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			TeamB.left = true;
-			GoalkeeperB.left = true;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_Q) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_Q) {
 			GoalkeeperA.up = true;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_Z) {
 			GoalkeeperA.down = true;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_O) {
-			GoalkeeperB.up = true;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_L) {
-			GoalkeeperB.down = true;
-
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_D) {
+			GoalkeeperA.right = true;
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_A) {
+			GoalkeeperA.left = true;
+			
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			TeamA.up = false;
-
+			TeamA.up = false;			
+			
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			TeamA.down = false;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_A) {
 			TeamA.right = false;
-			GoalkeeperA.right = false;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_D) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_D) {
 			TeamA.left = false;
-			GoalkeeperA.left = false;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			TeamB.up = false;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			TeamB.down = false;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			TeamB.right = false;
-			GoalkeeperB.right = false;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			TeamB.left = false;
-			GoalkeeperB.left = false;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_Q) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_Q) {
 			GoalkeeperA.up = false;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_Z) {
 			GoalkeeperA.down = false;
-
-		}else if (e.getKeyCode() == KeyEvent.VK_O) {
-			GoalkeeperB.up = false;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_L) {
-			GoalkeeperB.down = false;
-
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_D) {
+			GoalkeeperA.right = false;
+			
+		}else if (e.getKeyCode() == KeyEvent.VK_A) {
+			GoalkeeperA.left = false;
+			
 		}
+
 	}
 
 }

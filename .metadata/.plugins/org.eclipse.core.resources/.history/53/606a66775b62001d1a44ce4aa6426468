@@ -213,12 +213,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
 			GoalkeeperA.down = true;
 
-		} else if (e.getKeyCode() == KeyEvent.VK_O) {
-			GoalkeeperB.up = true;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_L) {
-			GoalkeeperB.down = true;
-
 		}
 	}
 
@@ -257,12 +251,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
 			GoalkeeperA.down = false;
-
-		}else if (e.getKeyCode() == KeyEvent.VK_O) {
-			GoalkeeperB.up = false;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_L) {
-			GoalkeeperB.down = false;
 
 		}
 	}

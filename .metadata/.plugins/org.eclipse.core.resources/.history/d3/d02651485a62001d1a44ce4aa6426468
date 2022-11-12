@@ -8,7 +8,7 @@ import br.com.alexsandro.gamepebolim.Game;
 public class TeamB extends Entity {
 
 	public int width, height;
-	public static boolean up = false, down = false, left = false, right = false;
+	public boolean up = false, down = false, left = false, right = false;
 
 	public static BufferedImage rightPlayerB;
 	public static BufferedImage leftPlayerB;
