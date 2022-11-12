@@ -18,7 +18,7 @@ import br.com.alexsandro.gamepebolim.field.Field;
 import br.com.alexsandro.gamepebolim.players.Entity;
 import br.com.alexsandro.gamepebolim.players.GoalkeeperA;
 import br.com.alexsandro.gamepebolim.players.GoalkeeperB;
-import br.com.alexsandro.gamepebolim.players.Player;
+import br.com.alexsandro.gamepebolim.players.Ball;
 import br.com.alexsandro.gamepebolim.players.TeamA;
 import br.com.alexsandro.gamepebolim.players.TeamB;
 import br.com.alexsandro.gamepebolim.sprites.Sprites;
@@ -32,12 +32,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public BufferedImage layer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private boolean isRunning = true;
-	public Player player[] = new Player[18];
-	public TeamA teamA[] = new TeamA[8];
-	public TeamB teamB[] = new TeamB[8];
+	public TeamA teamA;
+	public TeamB teamB[] = new TeamB[1];
 	public GoalkeeperA keeperA[] = new GoalkeeperA[1];
-	public GoalkeeperB keeperB[]= new GoalkeeperB[1];
-	public Player ball;
+	public GoalkeeperB keeperB[] = new GoalkeeperB[1];
+	public Ball ball[] = new Ball[1];
 
 	private BufferedImage image;
 
@@ -53,42 +52,39 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		entities = new ArrayList<Entity>();
 		sprite = new Sprites("/SpritesPebolim.png");
 		field = new Field("/map.png");
-		ball = new Player(48, 56, 16, 16, sprite.getSprite(0, 64, 16, 16));
-		
-		entities.add(ball);
+
+		entities.add(ball[0] = new Ball(48, 56, 16, 16, sprite.getSprite(0, 64, 16, 16)));
+
 		// Goleiros A e B
 		entities.add(keeperB[0] = new GoalkeeperB(85, 56, 16, 16, sprite.getSprite(32, 32, 16, 16)));
-		entities.add(keeperA[17] = new GoalkeeperA(11, 56, 16, 16, sprite.getSprite(32, 48, 16, 16)));
+		entities.add(keeperA[0] = new GoalkeeperA(11, 56, 16, 16, sprite.getSprite(32, 48, 16, 16)));
 
 		// Defensores A
-		entities.add(player[1] = new Player(30, 75, 16, 16, sprite.getSprite(32, 48, 16, 16)));
-		entities.add(player[2] = new Player(30, 57, 16, 16, sprite.getSprite(32, 48, 16, 16)));
-		entities.add(player[3] = new Player(30, 39, 16, 16, sprite.getSprite(32, 48, 16, 16)));
+		entities.add(teamA = new TeamA(30, 75, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		/*entities.add(teamA[0] = new TeamA(30, 57, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[0] = new TeamA(30, 39, 16, 16, sprite.getSprite(32, 16, 16, 16)));
 
 		// Meias A
-		entities.add(player[4] = new Player(54, 75, 16, 16, sprite.getSprite(32, 48, 16, 16)));
-		entities.add(player[5] = new Player(54, 57, 16, 16, sprite.getSprite(32, 48, 16, 16)));
-		entities.add(player[6] = new Player(54, 39, 16, 16, sprite.getSprite(32, 48, 16, 16)));
+		entities.add(teamA[0] = new TeamA(54, 75, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[0] = new TeamA(54, 57, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[0] = new TeamA(54, 39, 16, 16, sprite.getSprite(32, 16, 16, 16)));
 
 		// Atacantes A
-		entities.add(player[7] = new Player(78, 66, 16, 16, sprite.getSprite(32, 48, 16, 16)));
-		entities.add(player[8] = new Player(78, 48, 16, 16, sprite.getSprite(32, 48, 16, 16)));
-
-		// Defensores B
-		entities.add(player[16] = new Player(66, 75, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		entities.add(player[15] = new Player(66, 57, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		entities.add(player[14] = new Player(66, 39, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamA[0] = new TeamA(78, 66, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[0] = new TeamA(78, 48, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		*/// Defensores B
+		entities.add(teamB[0] = new TeamB(66, 75, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[0] = new TeamB(66, 57, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[0] = new TeamB(66, 39, 16, 16, sprite.getSprite(32, 0, 16, 16)));
 
 		// Meias B
-		entities.add(player[13] = new Player(42, 75, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		entities.add(player[12] = new Player(42, 57, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		entities.add(player[11] = new Player(42, 39, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[0] = new TeamB(42, 75, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[0] = new TeamB(42, 57, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[0] = new TeamB(42, 39, 16, 16, sprite.getSprite(32, 0, 16, 16)));
 
 		// Atacantes B
-		entities.add(player[10] = new Player(18, 66, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		entities.add(player[9] = new Player(18, 48, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		
-		
+		entities.add(teamB[0] = new TeamB(18, 66, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[0] = new TeamB(18, 48, 16, 16, sprite.getSprite(32, 0, 16, 16)));
 
 	}
 
@@ -185,35 +181,90 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			
-			player[1].up = true;
-			player[2].up = true;
-			player[3].up = true;
-			
+			TeamA.up = true;
+
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			
-			player[1].down = true;
-			player[2].down = true;
-			player[3].down = true;
-			
+			TeamA.down = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			TeamA.right = true;
+			GoalkeeperA.right = true;
+		} else if (e.getKeyCode() == KeyEvent.VK_D) {
+			TeamA.left = true;
+			GoalkeeperA.left = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			TeamB.up = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			TeamB.down = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			TeamB.right = true;
+			GoalkeeperB.right = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			TeamB.left = true;
+			GoalkeeperB.left = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_Q) {
+			GoalkeeperA.up = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
+			GoalkeeperA.down = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_O) {
+			GoalkeeperB.up = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_L) {
+			GoalkeeperB.down = true;
+
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			player[1].up = false;
-			player[2].up = false;
-			player[3].up = false;
-			
-			
-		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			player[1].down = false;
-			player[2].down = false;
-			player[3].down = false;
-			
-		}
+			TeamA.up = false;
 
+		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			TeamA.down = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			TeamA.right = false;
+			GoalkeeperA.right = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_D) {
+			TeamA.left = false;
+			GoalkeeperA.left = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			TeamB.up = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			TeamB.down = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			TeamB.right = false;
+			GoalkeeperB.right = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			TeamB.left = false;
+			GoalkeeperB.left = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_Q) {
+			GoalkeeperA.up = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
+			GoalkeeperA.down = false;
+
+		}else if (e.getKeyCode() == KeyEvent.VK_O) {
+			GoalkeeperB.up = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_L) {
+			GoalkeeperB.down = false;
+
+		}
 	}
 
 }

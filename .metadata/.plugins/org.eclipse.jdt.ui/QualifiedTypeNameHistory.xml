@@ -20,7 +20,7 @@
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.field.Field"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.TeamA"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.TeamB"/>
-    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperB"/>
-    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperA"/>
     <fullyQualifiedTypeName name="java.awt.Graphics"/>
+    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperA"/>
+    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperB"/>
 </qualifiedTypeNameHistroy>
