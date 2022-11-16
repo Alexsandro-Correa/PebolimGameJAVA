@@ -8,7 +8,7 @@ import br.com.alexsandro.gamepebolim.Game;
 public class GoalkeeperA extends Entity {
 
 	public int width, height;
-	public static boolean up = false, down = false, left = false, right = false;
+	public static boolean up = false, down = false, left = false, right = false, movedUp = true, movedDown = true;
 
 	public static BufferedImage rightKeeperA;
 	public static BufferedImage leftKeeperA;
@@ -24,10 +24,21 @@ public class GoalkeeperA extends Entity {
 	}
 
 	public void tick() {
-		if (up == true) {
+		
+		if (up == true && movedUp == true) {
+			movedDown = true;
 			y--;
-		} else if (down == true) {
+			if (y <= 27) {
+				movedUp = false;
+			}
+		}
+
+		if (down == true && movedDown == true) {
+			movedUp = true;
 			y++;
+			if (y > 85) {
+				movedDown = false;
+			}
 		}
 	}
 	
