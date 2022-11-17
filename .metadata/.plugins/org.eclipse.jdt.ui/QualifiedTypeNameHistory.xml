@@ -23,5 +23,7 @@
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperA"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperB"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.field.Tile"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="java.awt.Rectangle"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.field.Field"/>
 </qualifiedTypeNameHistroy>

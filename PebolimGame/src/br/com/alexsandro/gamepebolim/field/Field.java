@@ -39,17 +39,17 @@ public class Field {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P6);
 						
 					} else if (pixelAtual == 0xFFFF7F7F) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P7);
+						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P7);
 					} else if (pixelAtual == 0xFFFFB27F) {
-						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P8);
+						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P8);
 					} else if (pixelAtual == 0xFFFFB97F) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P9);
 					} else if (pixelAtual == 0xFFFFE87F) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P10);
+						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P10);
 					} else if (pixelAtual == 0xFFDAFF7F) {
-						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P11);
+						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P11);
 					} else if (pixelAtual == 0xFFA5FF7F) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P12);
+						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P12);
 						
 					}else if (pixelAtual == 0xFFFF0022) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P13);
@@ -69,30 +69,30 @@ public class Field {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P24);
 						
 					} else if (pixelAtual == 0xFF7FFF8E) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P13);
+						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P13);
 					} else if (pixelAtual == 0xFF7FFFC5) {
-						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P14);
+						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P14);
 					} else if (pixelAtual == 0xFF7C7643) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P15);
 					} else if (pixelAtual == 0xFF7C4D47) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P16);
+						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P16);
 					} else if (pixelAtual == 0xFF4CFF00) {
-						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P17);
+						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P17);
 					} else if (pixelAtual == 0xFF7C435D) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P18);
+						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P18);
 						
 					} else if (pixelAtual == 0xFF4CFF22) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P19);
+						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P19);
 					} else if (pixelAtual == 0xFF76477C) {
-						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P20);
+						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P20);
 					} else if (pixelAtual == 0xFF3F297C) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P21);
 					} else if (pixelAtual == 0xFF26537C) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P22);
+						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P22);
 					} else if (pixelAtual == 0xFF3D7C73) {
-						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P23);
+						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P23);
 					} else if (pixelAtual == 0xFF4CFF44) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P24);
+						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P24);
 						
 					} else if (pixelAtual == 0xFF627C4C) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P25);
@@ -151,7 +151,7 @@ public class Field {
 		int x4 = (xnext + TILE_SIZE - 1) / TILE_SIZE;
 		int y4 = (ynext + TILE_SIZE - 1) / TILE_SIZE;
 
-		return !((tiles[x1 + (y1 * Field.WIDTH)] instanceof TileColision )
+		return !((tiles[x1 + (y1 * Field.WIDTH+2)] instanceof TileColision )
 				|| (tiles[x2 + (y2 * Field.WIDTH)] instanceof TileColision)
 				|| (tiles[x3 + (y3 * Field.WIDTH)] instanceof TileColision)
 				|| (tiles[x4 + (y4 * Field.WIDTH)] instanceof TileColision));

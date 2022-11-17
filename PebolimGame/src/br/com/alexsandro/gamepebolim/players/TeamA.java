@@ -9,6 +9,10 @@ public class TeamA extends Entity {
 
 	public int width, height;
 	public static boolean up = false, down = false, left = false, right = false, movedUp = true, movedDown = true;
+	public static double newX;
+	public static double newY;
+	public static double speed = 1;
+	public static byte gol = 0;
 
 	public static BufferedImage rightPlayerA;
 	public static BufferedImage leftPlayerA;
@@ -23,23 +27,25 @@ public class TeamA extends Entity {
 
 	}
 
-	public void tick() {
-
+	public void tick() {		
+		
 		if (up == true && movedUp == true) {
 			movedDown = true;
-			y--;
-			if (y <= 27) {
+			y-=speed;
+			if (y <= 29) {
 				movedUp = false;
 			}
 		}
 
 		if (down == true && movedDown == true) {
 			movedUp = true;
-			y++;
-			if (y > 85) {
+			y+=speed;
+			if (y > 83) {
 				movedDown = false;
 			}
 		}
+		newX = x;
+		newY = y;
 
 	}
 

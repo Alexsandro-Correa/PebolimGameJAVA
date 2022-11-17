@@ -11,6 +11,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -43,8 +44,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public List<Entity> entities;
 	public static Sprites sprite;
 	public static Field field;
+	public static Random rand = new Random();
+	public static Random rand2 = new Random();
 
 	public Game() {
+		rand.nextBoolean();
+		rand2.nextBoolean();
+		
 		this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		this.addKeyListener(this);
 
@@ -133,8 +139,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		g.setFont(new Font("Arial", Font.BOLD, 10));
 		Color font = new Color(255, 255, 255);
 		g.setColor(font);
-		g.drawString("Team A 0", 10, 12);
-		g.drawString("0 Team B", 60, 12);
+		g.drawString("Team A " + TeamB.gol, 10, 12);
+		g.drawString(TeamA.gol + " Team B " , 60, 12);
 		g.drawString(" : ", 53, 12);
 
 		g.dispose();
@@ -152,6 +158,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		double delta = 0;
 		int frames = 0;
 		double timer = System.currentTimeMillis();
+		requestFocus();
 		while (isRunning) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;

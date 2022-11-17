@@ -9,6 +9,7 @@ public class TeamB extends Entity {
 
 	public int width, height;
 	public static boolean up = false, down = false, left = false, right = false, movedUp = true, movedDown = true;
+	public static byte gol = 0;
 
 	public static BufferedImage rightPlayerB;
 	public static BufferedImage leftPlayerB;
@@ -27,7 +28,7 @@ public class TeamB extends Entity {
 		if (up == true && movedUp == true) {
 			movedDown = true;
 			y--;
-			if (y <= 27) {
+			if (y <= 29) {
 				movedUp = false;
 			}
 		}
@@ -35,7 +36,7 @@ public class TeamB extends Entity {
 		if (down == true && movedDown == true) {
 			movedUp = true;
 			y++;
-			if (y > 85) {
+			if (y > 83) {
 				movedDown = false;
 			}
 		}
