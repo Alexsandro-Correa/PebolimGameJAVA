@@ -15,6 +15,7 @@ public class Ball extends Entity {
 	public static boolean running = true;
 	public static boolean isGoal = false;
 	public static double speed = 1;
+	public static double time;
 
 	public static BufferedImage ball;
 
@@ -26,9 +27,6 @@ public class Ball extends Entity {
 
 	public void tick() {
 
-		// Posição Inicial
-		// x = 48
-		// y = 56		
 		
 		if(isGoal == true) {
 			x = 48;
@@ -36,32 +34,40 @@ public class Ball extends Entity {
 			isGoal = false;
 		}
 		//Rever essa lógica > Colisão da Bola com o Player - Lembrar de usar as variávies center,right e left.
-		//System.out.println(x+1);
-		//System.out.println(TeamA.newX);
+		//System.out.println("Ball" + x);
+		//System.out.println("Player"+TeamA.newX);
 		//System.out.println(y);
 		//System.out.println(TeamA.newY);
-		//if(y == TeamA.newY) {
-		//	y-=speed;
-		//}
 		
 		if(running == true) {
 
+			System.out.println(y);
+			System.out.println(Game.teamA[1].y+4);
+			if(y == (Game.teamA[1].y+4)) {
+				if(TeamA.right) {
+					y-=speed;
+				}
+				
+			}
+			
 		if (ballUp == true && ballRight == false) {
+			
 			y-=speed;
 			x-=speed;
 			
-			if(x == 13 && y > 47 && y < 65) {
+			if(x <= 11 && y > 47 && y < 65) {
+				x-=speed*2;
 				isGoal = true;
 				TeamA.gol++;
 				x--;
 				ballRight = true;
 			}
 
-			if (y == 26) {
+			if (y <= 26) {
 				ballUp = false;
 			}
 
-			if (x == 13) {
+			if (x <= 11) {
 				ballRight = true;
 			}
 
@@ -69,18 +75,19 @@ public class Ball extends Entity {
 			y+=speed;
 			x+=speed;
 			
-			if(x == 83 && y > 47 && y < 65) {
+			if(x >= 85 && y > 47 && y < 65) {
+				x+=speed*2;
 				isGoal = true;
 				TeamB.gol++;
 				x++;
 				ballRight = false;
 			}
 			
-			if (y == 85) {
+			if (y >= 85) {
 				ballUp = true;
 			}
 
-			if (x == 83) {
+			if (x >= 85) {
 				ballRight = false;
 			}
 
@@ -88,18 +95,19 @@ public class Ball extends Entity {
 			y+=speed;
 			x-=speed;
 			
-			if(x == 13 && y > 47 && y < 65) {
+			if(x <= 11 && y > 47 && y < 65) {
+				x-=speed*2;
 				isGoal = true;
 				TeamA.gol++;
 				x--;
 				ballRight = true;
 			}
 			
-			if (y == 85) {
+			if (y >= 85) {
 				ballUp = true;
 			}
 
-			if (x == 13) {
+			if (x <= 11) {
 				ballRight = true;
 			}
 
@@ -107,26 +115,34 @@ public class Ball extends Entity {
 			y-=speed;
 			x+=speed;
 			
-			if(x == 83 && y > 47 && y < 65) {
+			if(x >= 85 && y > 47 && y < 65) {
+				x+=speed*2;
 				isGoal = true;
 				TeamB.gol++;
 				x++;
 				ballRight = false;
 			}
 			
-			if (y == 26) {
+			if (y <= 26) {
 				ballUp = false;
 
 			}
 
-			if (x == 83) {
+			if (x >= 85) {
 				ballRight = false;
 			}
 		}
 		
-		//running = false;
+		time+=speed;
+		System.out.println(time);
+		if(time >= 6) {
 	
+			running = false;
+		
+			}
 		}
+		
+		
 
 	}
 	

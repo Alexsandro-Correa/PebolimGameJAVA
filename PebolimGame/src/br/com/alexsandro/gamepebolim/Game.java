@@ -33,8 +33,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public BufferedImage layer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private boolean isRunning = true;
-	public TeamA teamA;
-	public TeamB teamB;
+	public static TeamA teamA[] = new TeamA[8];
+	public static TeamB teamB[] = new TeamB[8];
 	public GoalkeeperA keeperA;
 	public GoalkeeperB keeperB;
 	public Ball ball;
@@ -66,31 +66,31 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		entities.add(keeperA = new GoalkeeperA(11, 56, 16, 16, sprite.getSprite(32, 48, 16, 16)));
 
 		// Defensores A
-		entities.add(teamA = new TeamA(30, 75, 16, 16, sprite.getSprite(32, 16, 16, 16)));
-		entities.add(teamA = new TeamA(30, 57, 16, 16, sprite.getSprite(32, 16, 16, 16)));
-		entities.add(teamA = new TeamA(30, 39, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[0] = new TeamA(30, 75, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[1] = new TeamA(30, 57, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[2] = new TeamA(30, 39, 16, 16, sprite.getSprite(32, 16, 16, 16)));
 
 		// Meias A
-		entities.add(teamA = new TeamA(54, 75, 16, 16, sprite.getSprite(32, 16, 16, 16)));
-		entities.add(teamA = new TeamA(54, 57, 16, 16, sprite.getSprite(32, 16, 16, 16)));
-		entities.add(teamA = new TeamA(54, 39, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[3] = new TeamA(54, 75, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[4] = new TeamA(54, 57, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[5] = new TeamA(54, 39, 16, 16, sprite.getSprite(32, 16, 16, 16)));
 
 		// Atacantes A
-		entities.add(teamA = new TeamA(78, 66, 16, 16, sprite.getSprite(32, 16, 16, 16)));
-		entities.add(teamA = new TeamA(78, 48, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[6] = new TeamA(78, 66, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[7] = new TeamA(78, 48, 16, 16, sprite.getSprite(32, 16, 16, 16)));
 		// Defensores B
-		entities.add(teamB = new TeamB(66, 75, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		entities.add(teamB = new TeamB(66, 57, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		entities.add(teamB = new TeamB(66, 39, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[0] = new TeamB(66, 75, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[1] = new TeamB(66, 57, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[2] = new TeamB(66, 39, 16, 16, sprite.getSprite(32, 0, 16, 16)));
 
 		// Meias B
-		entities.add(teamB = new TeamB(42, 75, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		entities.add(teamB = new TeamB(42, 57, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		entities.add(teamB = new TeamB(42, 39, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[3] = new TeamB(42, 75, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[4] = new TeamB(42, 57, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[5] = new TeamB(42, 39, 16, 16, sprite.getSprite(32, 0, 16, 16)));
 
 		// Atacantes B
-		entities.add(teamB = new TeamB(18, 66, 16, 16, sprite.getSprite(32, 0, 16, 16)));
-		entities.add(teamB = new TeamB(18, 48, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[6] = new TeamB(18, 66, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[7] = new TeamB(18, 48, 16, 16, sprite.getSprite(32, 0, 16, 16)));
 
 	}
 
