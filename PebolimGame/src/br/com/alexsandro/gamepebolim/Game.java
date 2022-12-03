@@ -35,13 +35,15 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	private boolean isRunning = true;
 	public static TeamA teamA[] = new TeamA[8];
 	public static TeamB teamB[] = new TeamB[8];
-	public GoalkeeperA keeperA;
-	public GoalkeeperB keeperB;
+	public static GoalkeeperA keeperA;
+	public static GoalkeeperB keeperB;
 	public Ball ball;
 
 	private BufferedImage image;
 
-	public List<Entity> entities;
+	public static List<Entity> entities;
+	public static List<TeamA> tA;
+	public static List<TeamB> tB;
 	public static Sprites sprite;
 	public static Field field;
 	public static Random rand = new Random();
@@ -56,14 +58,16 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		entities = new ArrayList<Entity>();
+		tA = new ArrayList<TeamA>();
+		tB = new ArrayList<TeamB>();
 		sprite = new Sprites("/SpritesPebolim.png");
 		field = new Field("/map.png");
 
 		entities.add(ball = new Ball(48, 56, 16, 16, sprite.getSprite(0, 64, 16, 16)));
 
 		// Goleiros A e B
-		entities.add(keeperB = new GoalkeeperB(85, 56, 16, 16, sprite.getSprite(32, 32, 16, 16)));
 		entities.add(keeperA = new GoalkeeperA(11, 56, 16, 16, sprite.getSprite(32, 48, 16, 16)));
+		entities.add(keeperB = new GoalkeeperB(85, 56, 16, 16, sprite.getSprite(32, 32, 16, 16)));
 
 		// Defensores A
 		entities.add(teamA[0] = new TeamA(30, 75, 16, 16, sprite.getSprite(32, 16, 16, 16)));
@@ -96,7 +100,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public static void main(String[] args) {
 		Game game = new Game();
-		JFrame frame = new JFrame("Pebolim");
+		JFrame frame = new JFrame("Pebolim Game");
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(game);
@@ -108,7 +112,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	}
 
-	// Atualizar o jogo
 	public void tick() {
 
 		for (int i = 0; i < entities.size(); i++) {
@@ -118,7 +121,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		}
 	}
 
-	// Renderizar o jogo
 	public void render() {
 
 		BufferStrategy bs = this.getBufferStrategy();
@@ -139,9 +141,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		g.setFont(new Font("Arial", Font.BOLD, 10));
 		Color font = new Color(255, 255, 255);
 		g.setColor(font);
-		g.drawString("Team A " + TeamB.gol, 10, 12);
-		g.drawString(TeamA.gol + " Team B " , 60, 12);
-		g.drawString(" : ", 53, 12);
+		g.drawString("" + TeamB.gol, 46, 12);
+		g.drawString(TeamA.gol + "" , 61, 12);
+		g.drawString(" : ", 52, 12);
+		g.drawImage(TeamA.logo, 24,2, 16, 16,null);
+		g.drawImage(TeamB.logo, 70,2, 16, 16,null);
 
 		g.dispose();
 		g = bs.getDrawGraphics();
@@ -169,6 +173,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				frames++;
 				delta--;
 			}
+			
 
 			if (System.currentTimeMillis() - timer >= 1000) {
 				System.out.println("FPS: " + frames);
@@ -176,12 +181,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				timer += 1000;
 			}
 		}
-
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 

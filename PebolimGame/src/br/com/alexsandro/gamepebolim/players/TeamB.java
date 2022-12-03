@@ -15,13 +15,16 @@ public class TeamB extends Entity {
 	public static BufferedImage rightPlayerB;
 	public static BufferedImage leftPlayerB;
 	public static BufferedImage centerPlayerB;
+	public static BufferedImage logo;
 
 	public TeamB(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
 
 		centerPlayerB = Game.sprite.getSprite(32, 0, 16, 16);
-		rightPlayerB = Game.sprite.getSprite(16, 0, 16, 16);
-		leftPlayerB = Game.sprite.getSprite(0, 0, 16, 16);
+		rightPlayerB = Game.sprite.getSprite(0, 0, 16, 16);
+		leftPlayerB = Game.sprite.getSprite(16, 0, 16, 16);
+		logo = Game.sprite.getSprite(16, 96, 16, 16);
+		
 
 	}
 
@@ -51,9 +54,9 @@ public class TeamB extends Entity {
 	
 	public void render(Graphics g) {
 	
-		if (TeamB.right == true) {
+		if (TeamB.left == true) {
 			g.drawImage(TeamB.rightPlayerB, this.getX(), this.getY(), null);
-		} else if (TeamB.left == true) {
+		} else if (TeamB.right == true) {
 			g.drawImage(TeamB.leftPlayerB, this.getX(), this.getY(), null);
 		} else if (TeamB.right == false && TeamB.left == false) {
 			g.drawImage(TeamB.centerPlayerB, this.getX(), this.getY(), null);

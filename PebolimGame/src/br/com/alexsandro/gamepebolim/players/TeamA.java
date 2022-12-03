@@ -17,6 +17,7 @@ public class TeamA extends Entity {
 	public static BufferedImage rightPlayerA;
 	public static BufferedImage leftPlayerA;
 	public static BufferedImage centerPlayerA;
+	public static BufferedImage logo;
 
 	public TeamA(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
@@ -24,12 +25,14 @@ public class TeamA extends Entity {
 		centerPlayerA = Game.sprite.getSprite(32, 16, 16, 16);
 		rightPlayerA = Game.sprite.getSprite(0, 16, 16, 16);
 		leftPlayerA = Game.sprite.getSprite(16, 16, 16, 16);
+		logo = Game.sprite.getSprite(0, 96, 16, 16);
+		
 
 	}
 
 	public void tick() {		
-		//newX = x;
-		//newY = y;
+		newX = x;
+		newY = y;
 		//System.out.println(x);
 		//System.out.println(y);
 		if (up == true && movedUp == true) {

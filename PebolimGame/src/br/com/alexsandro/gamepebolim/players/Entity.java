@@ -9,7 +9,7 @@ public class Entity {
 	protected double y;
 	protected int width;
 	protected int height;
-	
+
 	public Entity(int x, int y, int width, int height, BufferedImage sprite) {
 		this.x = x;
 		this.y = y;
@@ -47,8 +47,6 @@ public class Entity {
 	}
 
 	public void render(Graphics g) {
-
-
 
 	}
 
