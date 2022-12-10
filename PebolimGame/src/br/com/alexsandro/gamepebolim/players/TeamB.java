@@ -10,7 +10,8 @@ public class TeamB extends Entity {
 	public int width, height;
 	public static boolean up = false, down = false, left = false, right = false, movedUp = true, movedDown = true;
 	public static double speed = 0.1;
-	public static byte gol = 0;
+	public static byte gol = 0, maxGol = 5, finalGol;
+	public static boolean win = false;
 
 	public static BufferedImage rightPlayerB;
 	public static BufferedImage leftPlayerB;

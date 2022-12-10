@@ -8,3 +8,7 @@ Repositório destinado a criação de um jogo de pebolim feito inteiramente em j
 **Game Funcionando** 
 
 ![Gif](/PebolimGameFuncionando.gif)
+
+**Fim de Jogo e Restart** 
+
+![Gif](/PebolimGameRestart.gif)

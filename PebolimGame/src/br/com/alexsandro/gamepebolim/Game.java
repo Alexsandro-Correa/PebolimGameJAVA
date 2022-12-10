@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
@@ -37,9 +38,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static TeamB teamB[] = new TeamB[8];
 	public static GoalkeeperA keeperA;
 	public static GoalkeeperB keeperB;
-	public Ball ball;
+	public static Ball ball;
 
-	private BufferedImage image;
+	public static BufferedImage image;
 
 	public static List<Entity> entities;
 	public static List<TeamA> tA;
@@ -48,11 +49,14 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static Field field;
 	public static Random rand = new Random();
 	public static Random rand2 = new Random();
+	
+	private boolean showMessageGameEnd = false;
+	private int framesGameEnd = 0;
 
 	public Game() {
 		rand.nextBoolean();
 		rand2.nextBoolean();
-		
+
 		this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		this.addKeyListener(this);
 
@@ -113,12 +117,38 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	}
 
 	public void tick() {
+		if (TeamA.win == false && TeamB.win == false) {
 
-		for (int i = 0; i < entities.size(); i++) {
-			Entity e = entities.get(i);
+			for (int i = 0; i < entities.size(); i++) {
+				Entity e = entities.get(i);
+				e.tick();
+			}
 
-			e.tick();
+			if (TeamA.gol == TeamA.maxGol) {
+				TeamA.finalGol = TeamA.gol;
+				TeamB.finalGol = TeamB.gol;
+				TeamA.gol = 0;
+				TeamB.gol = 0;
+				TeamA.win = true;
+			} else if (TeamB.gol == TeamB.maxGol) {
+				TeamA.finalGol = TeamA.gol;
+				TeamB.finalGol = TeamB.gol;
+				TeamA.gol = 0;
+				TeamB.gol = 0;
+				TeamB.win = true;
+			}
+		}else {
+			framesGameEnd++;
+			if (framesGameEnd == 45) {
+				framesGameEnd = 0;
+				if (showMessageGameEnd) {
+					showMessageGameEnd = false;
+				} else {
+					showMessageGameEnd = true;
+				}
+			}
 		}
+
 	}
 
 	public void render() {
@@ -141,15 +171,32 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		g.setFont(new Font("Arial", Font.BOLD, 10));
 		Color font = new Color(255, 255, 255);
 		g.setColor(font);
-		g.drawString("" + TeamB.gol, 46, 12);
-		g.drawString(TeamA.gol + "" , 61, 12);
+		g.drawString("" + TeamA.gol, 46, 12);
+		g.drawString(TeamB.gol + "", 61, 12);
 		g.drawString(" : ", 52, 12);
-		g.drawImage(TeamA.logo, 24,2, 16, 16,null);
-		g.drawImage(TeamB.logo, 70,2, 16, 16,null);
+		g.drawImage(TeamA.logo, 24, 2, 16, 16, null);
+		g.drawImage(TeamB.logo, 70, 2, 16, 16, null);
 
 		g.dispose();
 		g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+
+		if (TeamA.win || TeamB.win) {
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setColor(new Color(0, 0, 0, 100));
+			g2.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
+			g2.setFont(new Font("Arial", Font.BOLD, 60));
+			g2.setColor(font);
+			g2.drawString("" + TeamA.finalGol, 330, 600 );
+			g2.drawString(TeamB.finalGol + "", 560 ,600 );
+			g2.drawString(" X ", 425, 550);
+			g2.drawImage(TeamA.logo, 280, 460, 16 * SCALE, 16 * SCALE, null);
+			g2.drawImage(TeamB.logo, 500, 460, 16 * SCALE, 16 * SCALE, null);
+		}
+		if (showMessageGameEnd) {
+			g.drawString("Press Enter to Restart!", ((WIDTH * SCALE) / 2) - 310, (HEIGHT * SCALE) / 2);
+	}
+
 		bs.show();
 
 	}
@@ -173,7 +220,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				frames++;
 				delta--;
 			}
-			
 
 			if (System.currentTimeMillis() - timer >= 1000) {
 				System.out.println("FPS: " + frames);
@@ -230,6 +276,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			GoalkeeperB.down = true;
 
 		}
+
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			TeamA.win = false;
+			TeamB.win = false;
+			showMessageGameEnd = false;
+		}
 	}
 
 	@Override
@@ -268,7 +320,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
 			GoalkeeperA.down = false;
 
-		}else if (e.getKeyCode() == KeyEvent.VK_O) {
+		} else if (e.getKeyCode() == KeyEvent.VK_O) {
 			GoalkeeperB.up = false;
 
 		} else if (e.getKeyCode() == KeyEvent.VK_L) {

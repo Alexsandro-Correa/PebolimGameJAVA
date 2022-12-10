@@ -154,7 +154,7 @@ public class Ball extends Entity {
 			if ((int) x <= 11 && (int) y > 47 && (int) y < 65) {
 				x -= speed * 2;
 				isGoal = true;
-				TeamA.gol++;
+				TeamB.gol++;
 				ballRight = true;
 				ballLeft = false;
 			}
@@ -162,7 +162,7 @@ public class Ball extends Entity {
 			if ((int) x >= 85 && (int) y > 47 && (int) y < 65) {
 				x += speed * 2;
 				isGoal = true;
-				TeamB.gol++;
+				TeamA.gol++;
 				ballRight = false;
 				ballLeft = true;
 			}
