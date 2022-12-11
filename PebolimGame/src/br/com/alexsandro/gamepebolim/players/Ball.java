@@ -23,12 +23,21 @@ public class Ball extends Entity {
 	public Ball(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
 
-		ball = Game.sprite.getSprite(0, 64, 16, 16);
+		ball = Game.sprite.getSprite(32, 64, 16, 16);
 	}
 
 	public void tick() {
-
+		// x = 63; Meio
+		// y = 55; Meio
+		// x = 18; // Colisao Esquerda
+		// x = 90; //Colisao Direita
+		// y = 54; // Gol
+		// y = 72; // Gol
+		// y = 34; // Colisao y Cima
+		// y = 92; // Colisao y Baixo
 		if (firstLooping == true) {
+
+			ballRight = true;
 			if (ballRight == true) {
 				ballLeft = false;
 			}
@@ -45,104 +54,104 @@ public class Ball extends Entity {
 		}
 
 		if (isGoal == true) {
-			x = 48;
-			y = 56;
+			x = 63;
+			y = 55;
 			isGoal = false;
 		}
 
 		for (int i = 0; i < Game.teamA.length; i++) {
 
-			if (TeamA.left == true && x <= Game.teamA[i].x + 2 && x >= Game.teamA[i].x
-					&& y == (int) (Game.teamA[i].y)) {
+			if (TeamA.left == true && x <= Game.teamA[i].x + 12 && x >= Game.teamA[i].x
+					&& y == (int) (Game.teamA[i].y + 7)) {
 				ballRight = true;
 				running = true;
-			} else if (TeamA.left == true && x <= Game.teamA[i].x + 2 && x >= Game.teamA[i].x
-					&& y >= (int) (Game.teamA[i].y - 2) && y <= (int) (Game.teamA[i].y)) {
+			} else if (TeamA.left == true && x <= Game.teamA[i].x + 12 && x >= Game.teamA[i].x
+					&& y >= (int) (Game.teamA[i].y + 4) && y <= (int) (Game.teamA[i].y + 6)) {
 				ballRight = true;
 				ballUp = true;
 				running = true;
-			} else if (TeamA.left == true && x <= Game.teamA[i].x + 2 && x >= Game.teamA[i].x
-					&& y >= (int) (Game.teamA[i].y) && y <= (int) (Game.teamA[i].y + 2)) {
+			} else if (TeamA.left == true && x <= Game.teamA[i].x + 12 && x >= Game.teamA[i].x
+					&& y >= (int) (Game.teamA[i].y + 7) && y <= (int) (Game.teamA[i].y + 10)) {
 				ballRight = true;
 				ballDown = true;
 				running = true;
 			}
 
-			if (TeamA.right == true && x >= Game.teamA[i].x - 2 && x <= Game.teamA[i].x
-					&& y == (int) (Game.teamA[i].y)) {
+			if (TeamA.right == true && x >= Game.teamA[i].x && x <= Game.teamA[i].x + 10
+					&& y == (int) (Game.teamA[i].y + 7)) {
 				ballLeft = true;
 				running = true;
-			} else if (TeamA.right == true && x >= Game.teamA[i].x - 2 && x <= Game.teamA[i].x
-					&& y >= (int) (Game.teamA[i].y - 2) && y <= (int) (Game.teamA[i].y)) {
+			} else if (TeamA.right == true && x >= Game.teamA[i].x && x <= Game.teamA[i].x + 10
+					&& y >= (int) (Game.teamA[i].y + 4) && y <= (int) (Game.teamA[i].y + 6)) {
 				ballLeft = true;
 				ballUp = true;
 				running = true;
-			} else if (TeamA.right == true && x >= Game.teamA[i].x - 2 && x <= Game.teamA[i].x
-					&& y >= (int) (Game.teamA[i].y) && y <= (int) (Game.teamA[i].y + 2)) {
+			} else if (TeamA.right == true && x >= Game.teamA[i].x && x <= Game.teamA[i].x + 10
+					&& y >= (int) (Game.teamA[i].y + 7) && y <= (int) (Game.teamA[i].y + 10)) {
 				ballLeft = true;
 				ballDown = true;
 				running = true;
 			}
 
-			if (TeamB.right == true && x <= Game.teamB[i].x + 2 && x >= Game.teamB[i].x
-					&& y == (int) (Game.teamB[i].y)) {
+			if (TeamB.right == true && x <= Game.teamB[i].x + 12 && x >= Game.teamB[i].x
+					&& y == (int) (Game.teamB[i].y + 7)) {
 				ballRight = true;
 				running = true;
-			} else if (TeamB.right == true && x <= Game.teamB[i].x + 2 && x >= Game.teamB[i].x
-					&& y >= (int) (Game.teamB[i].y - 2) && y <= (int) (Game.teamB[i].y)) {
+			} else if (TeamB.right == true && x <= Game.teamB[i].x + 12 && x >= Game.teamB[i].x
+					&& y >= (int) (Game.teamB[i].y + 4) && y <= (int) (Game.teamB[i].y + 6)) {
 				ballRight = true;
 				ballUp = true;
 				running = true;
-			} else if (TeamB.right == true && x <= Game.teamB[i].x + 2 && x >= Game.teamB[i].x
-					&& y >= (int) (Game.teamB[i].y) && y <= (int) (Game.teamB[i].y + 2)) {
+			} else if (TeamB.right == true && x <= Game.teamB[i].x + 12 && x >= Game.teamB[i].x
+					&& y >= (int) (Game.teamB[i].y + 7) && y <= (int) (Game.teamB[i].y + 10)) {
 				ballRight = true;
 				ballDown = true;
 				running = true;
 			}
 
-			if (TeamB.left == true && x >= Game.teamB[i].x - 2 && x <= Game.teamB[i].x
-					&& y == (int) (Game.teamB[i].y)) {
+			if (TeamB.left == true && x >= Game.teamB[i].x && x <= Game.teamB[i].x + 10
+					&& y == (int) (Game.teamB[i].y + 7)) {
 				ballLeft = true;
 				running = true;
-			} else if (TeamB.left == true && x >= Game.teamB[i].x - 2 && x <= Game.teamB[i].x
-					&& y >= (int) (Game.teamB[i].y - 2) && y <= (int) (Game.teamB[i].y)) {
+			} else if (TeamB.left == true && x >= Game.teamB[i].x && x <= Game.teamB[i].x + 10
+					&& y >= (int) (Game.teamB[i].y + 4) && y <= (int) (Game.teamB[i].y + 6)) {
 				ballLeft = true;
 				ballUp = true;
 				running = true;
-			} else if (TeamB.left == true && x >= Game.teamB[i].x - 2 && x <= Game.teamB[i].x
-					&& y >= (int) (Game.teamB[i].y) && y <= (int) (Game.teamB[i].y + 2)) {
+			} else if (TeamB.left == true && x >= Game.teamB[i].x && x <= Game.teamB[i].x + 10
+					&& y >= (int) (Game.teamB[i].y + 7) && y <= (int) (Game.teamB[i].y + 10)) {
 				ballLeft = true;
 				ballDown = true;
 				running = true;
 			}
 
-			if (GoalkeeperA.left == true && x <= Game.keeperA.x + 2 && x >= Game.keeperA.x
-					&& y == (int) (Game.keeperA.y)) {
+			if (GoalkeeperA.left == true && x <= Game.keeperA.x + 12 && x >= Game.keeperA.x
+					&& y == (int) (Game.keeperA.y + 7)) {
 				ballRight = true;
 				running = true;
-			} else if (GoalkeeperA.left == true && x <= Game.keeperA.x + 2 && x >= Game.keeperA.x
-					&& y >= (int) (Game.keeperA.y - 2) && y <= (int) (Game.keeperA.y)) {
+			} else if (GoalkeeperA.left == true && x <= Game.keeperA.x + 12 && x >= Game.keeperA.x
+					&& y >= (int) (Game.keeperA.y + 4) && y <= (int) (Game.keeperA.y + 6)) {
 				ballRight = true;
 				ballUp = true;
 				running = true;
-			} else if (GoalkeeperA.left == true && x <= Game.keeperA.x + 2 && x >= Game.keeperA.x
-					&& y >= (int) (Game.keeperA.y) && y <= (int) (Game.keeperA.y + 2)) {
+			} else if (GoalkeeperA.left == true && x <= Game.keeperA.x + 12 && x >= Game.keeperA.x
+					&& y >= (int) (Game.keeperA.y + 7) && y <= (int) (Game.keeperA.y + 10)) {
 				ballRight = true;
 				ballDown = true;
 				running = true;
 			}
 
-			if (GoalkeeperB.left == true && x >= Game.keeperB.x - 2 && x <= Game.keeperB.x
-					&& y == (int) (Game.keeperB.y)) {
+			if (GoalkeeperB.left == true && x >= Game.keeperB.x && x <= Game.keeperB.x + 10
+					&& y == (int) (Game.keeperB.y + 7)) {
 				ballLeft = true;
 				running = true;
-			} else if (GoalkeeperB.left == true && x >= Game.keeperB.x - 2 && x <= Game.keeperB.x
-					&& y >= (int) (Game.keeperB.y - 2) && y <= (int) (Game.keeperB.y)) {
+			} else if (GoalkeeperB.left == true && x >= Game.keeperB.x && x <= Game.keeperB.x + 10
+					&& y >= (int) (Game.keeperB.y + 4) && y <= (int) (Game.keeperB.y + 6)) {
 				ballLeft = true;
 				ballUp = true;
 				running = true;
-			} else if (GoalkeeperB.left == true && x >= Game.keeperB.x - 2 && x <= Game.keeperB.x
-					&& y >= (int) (Game.keeperB.y) && y <= (int) (Game.keeperB.y + 2)) {
+			} else if (GoalkeeperB.left == true && x >= Game.keeperB.x && x <= Game.keeperB.x + 10
+					&& y >= (int) (Game.keeperB.y + 7) && y <= (int) (Game.keeperB.y + 10)) {
 				ballLeft = true;
 				ballDown = true;
 				running = true;
@@ -151,7 +160,7 @@ public class Ball extends Entity {
 
 		if (running == true) {
 
-			if ((int) x <= 11 && (int) y > 47 && (int) y < 65) {
+			if ((int) x <= 18 && (int) y > 53 && (int) y < 73) {
 				x -= speed * 2;
 				isGoal = true;
 				TeamB.gol++;
@@ -159,7 +168,7 @@ public class Ball extends Entity {
 				ballLeft = false;
 			}
 
-			if ((int) x >= 85 && (int) y > 47 && (int) y < 65) {
+			if ((int) x >= 90 && (int) y > 53 && (int) y < 73) {
 				x += speed * 2;
 				isGoal = true;
 				TeamA.gol++;
@@ -183,46 +192,36 @@ public class Ball extends Entity {
 				y += speed;
 			}
 
-			if (y <= 26) {
+			if (y <= 34) {
 				ballUp = false;
 				ballDown = true;
 			}
 
-			if (x <= 11) {
+			if (x <= 18) {
 				ballRight = true;
 				ballLeft = false;
 			}
 
-			if (y >= 85) {
+			if (y >= 92) {
 				ballUp = true;
 				ballDown = false;
 			}
 
-			if (x >= 85) {
+			if (x >= 90) {
 				ballRight = false;
 				ballLeft = true;
 			}
 
-			if (y >= 85) {
+			if (y >= 92) {
 				ballUp = true;
 				ballDown = false;
 			}
 
-			if (x <= 11) {
+			if (x <= 18) {
 				ballRight = true;
 				ballLeft = false;
 			}
 
-		}
-
-		if (y <= 26) {
-			ballUp = false;
-			ballDown = true;
-		}
-
-		if (x >= 85) {
-			ballRight = false;
-			ballLeft = true;
 		}
 
 		if (isColliding((int) x, (int) y)) {
@@ -237,43 +236,35 @@ public class Ball extends Entity {
 
 	public boolean isColliding(int xnext, int ynext) {
 
-		Rectangle playerCurrent = new Rectangle(xnext, ynext, 3, 3);
+		Rectangle playerCurrent = new Rectangle((int) x, (int) y, 3, 3);
 
-		for (int i = 0; i < Game.teamA.length; i++) {
-			TeamA tA = Game.teamA[i];
-			Rectangle targetPlayer = new Rectangle(tA.getX(), tA.getY(), 3, 3);
-			if (playerCurrent.intersects(targetPlayer)) {
-				return true;
-			}
-
-		}
-
-		for (int i = 0; i < Game.teamB.length; i++) {
-			TeamB tB = Game.teamB[i];
-			Rectangle targetPlayer = new Rectangle(tB.getX(), tB.getY(), 3, 3);
-			if (playerCurrent.intersects(targetPlayer)) {
-				return true;
-			}
-
-		}
-
-		GoalkeeperA gA = Game.keeperA;
-		Rectangle targetKeeperA = new Rectangle(gA.getX(), gA.getY(), 3, 3);
-		if (playerCurrent.intersects(targetKeeperA)) {
-			return true;
-		}
-
-		GoalkeeperB gB = Game.keeperB;
-		Rectangle targetKeeperB = new Rectangle(gB.getX(), gB.getY(), 3, 3);
-		if (playerCurrent.intersects(targetKeeperB)) {
-			return true;
-		}
+		
+		 for (int i = 0; i < Game.teamA.length; i++) { TeamA tA = Game.teamA[i];
+		 Rectangle targetPlayer = new Rectangle(tA.getX()+8, tA.getY()+6, 3, 3); if
+		  (playerCurrent.intersects(targetPlayer)) { return true; }
+		 
+		 }
+		  
+		  for (int i = 0; i < Game.teamB.length; i++) { TeamB tB = Game.teamB[i];
+		  Rectangle targetPlayer = new Rectangle(tB.getX()+8, tB.getY()+6, 3, 3); if
+		 (playerCurrent.intersects(targetPlayer)) { return true; }
+		  
+		  }
+		  
+		  GoalkeeperA gA = Game.keeperA; Rectangle targetKeeperA = new
+		  Rectangle(gA.getX()+8, gA.getY()+6, 3, 3); if
+		  (playerCurrent.intersects(targetKeeperA)) { return true; }
+		  
+		  GoalkeeperB gB = Game.keeperB; Rectangle targetKeeperB = new
+		  Rectangle(gB.getX()+8, gB.getY()+6, 3, 3); if
+		  (playerCurrent.intersects(targetKeeperB)) { return true; }
+		 
 
 		return false;
 	}
 
 	public void render(Graphics g) {
-		g.drawImage(Ball.ball, this.getX(), this.getY(), null);
+		g.drawImage(Ball.ball, getX() * Game.SCALE, getY() * Game.SCALE, 4 * Game.SCALE, 4 * Game.SCALE, null);
 	}
 
 }

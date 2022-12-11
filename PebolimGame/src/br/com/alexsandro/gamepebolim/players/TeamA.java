@@ -13,7 +13,6 @@ public class TeamA extends Entity {
 	public static double newY;
 	public static double speed = 0.1;
 	public static byte gol = 0, maxGol = 5, finalGol;
-	public static boolean win = false;
 
 	public static BufferedImage rightPlayerA;
 	public static BufferedImage leftPlayerA;
@@ -42,7 +41,7 @@ public class TeamA extends Entity {
 				Game.teamA[i].y-=speed;
 			}
 			//y-=speed;
-			if (y <= 31) {
+			if (y <= 27) {
 				movedUp = false;
 			}
 		}
@@ -53,7 +52,7 @@ public class TeamA extends Entity {
 				Game.teamA[i].y+=speed;
 			}
 			//y+=speed;
-			if (y > 82) {
+			if (y > 86) {
 				movedDown = false;
 			}
 		}
@@ -62,11 +61,11 @@ public class TeamA extends Entity {
 
 	public void render(Graphics g) {
 		if (TeamA.right == true) {
-			g.drawImage(TeamA.rightPlayerA, this.getX(), this.getY(), null);
+			g.drawImage(TeamA.rightPlayerA, getX()*Game.SCALE, getY()*Game.SCALE,16*Game.SCALE,16*Game.SCALE, null);
 		} else if (TeamA.left == true) {
-			g.drawImage(TeamA.leftPlayerA, this.getX(), this.getY(), null);
+			g.drawImage(TeamA.leftPlayerA, getX()*Game.SCALE, getY()*Game.SCALE,16*Game.SCALE,16*Game.SCALE, null);
 		} else if (TeamA.right == false && TeamA.left == false) {
-			g.drawImage(TeamA.centerPlayerA, this.getX(), this.getY(), null);
+			g.drawImage(TeamA.centerPlayerA, getX()*Game.SCALE, getY()*Game.SCALE,16*Game.SCALE,16*Game.SCALE, null);
 		}
 	}
 

@@ -3,12 +3,16 @@ Repositório destinado a criação de um jogo de pebolim feito inteiramente em j
 
 **Funcionamento Inicial do Game**
 
-![Gif](/PebolimGame1.gif)
+![Gif](/gifs/PebolimGame1.gif)
 
 **Game Funcionando** 
 
-![Gif](/PebolimGameFuncionando.gif)
+![Gif](/gifs//PebolimGameFuncionando.gif)
 
 **Fim de Jogo e Restart** 
 
-![Gif](/PebolimGameRestart.gif)
+![Gif](/gifs/PebolimGameRestart.gif)
+
+**Menu Funcional e nova Bola**
+
+![Gif](/gifs/PebolimGameMenu.gif)

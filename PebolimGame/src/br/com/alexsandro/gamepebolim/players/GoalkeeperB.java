@@ -44,11 +44,11 @@ public class GoalkeeperB extends Entity {
 	public void render(Graphics g) {
 		
 		if(GoalkeeperB.right == true) {
-			g.drawImage(GoalkeeperB.rightKeeperB, this.getX(), this.getY(), null);
+			g.drawImage(GoalkeeperB.rightKeeperB, getX()*Game.SCALE, getY()*Game.SCALE,16*Game.SCALE,16*Game.SCALE, null);
 		} else if (GoalkeeperB.left == true) {
-			g.drawImage(GoalkeeperB.leftKeeperB, this.getX(), this.getY(), null);
+			g.drawImage(GoalkeeperB.leftKeeperB, getX()*Game.SCALE, getY()*Game.SCALE,16*Game.SCALE,16*Game.SCALE, null);
 		} else if (GoalkeeperB.right == false && GoalkeeperB.left == false) {
-			g.drawImage(GoalkeeperB.centerKeeperB, this.getX(), this.getY(), null);
+			g.drawImage(GoalkeeperB.centerKeeperB, getX()*Game.SCALE, getY()*Game.SCALE,16*Game.SCALE,16*Game.SCALE, null);
 		}
 		
 	}
