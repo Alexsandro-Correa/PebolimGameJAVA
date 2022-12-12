@@ -37,6 +37,7 @@ public String[] options = {"Iniciar", "Controles" ,"Creditos", "Sair"};
 			}
 		}
 		if(enter) {
+			Sounds.torcida.play();
 			enter = false;
 			if(options[currentOption] == "Iniciar") {
 				Game.gameState = "INICIO";

@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import br.com.alexsandro.gamepebolim.Game;
+import br.com.alexsandro.gamepebolim.Sounds;
 
 public class Ball extends Entity {
 
@@ -161,6 +162,7 @@ public class Ball extends Entity {
 		if (running == true) {
 
 			if ((int) x <= 18 && (int) y > 53 && (int) y < 73) {
+				Sounds.gol.play();
 				x -= speed * 2;
 				isGoal = true;
 				TeamB.gol++;
@@ -169,6 +171,7 @@ public class Ball extends Entity {
 			}
 
 			if ((int) x >= 90 && (int) y > 53 && (int) y < 73) {
+				Sounds.gol.play();
 				x += speed * 2;
 				isGoal = true;
 				TeamA.gol++;
