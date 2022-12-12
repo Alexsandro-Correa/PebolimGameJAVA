@@ -71,6 +71,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		tB = new ArrayList<TeamB>();
 		sprite = new Sprites("/SpritesPebolim.png");
 		field = new Field("/map.png");
+		Sounds.torcida.loop();
 
 		entities.add(ball = new Ball(80, 64, 16, 16, sprite.getSprite(32, 64, 16, 16)));
 
@@ -126,7 +127,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public void tick() {
 		if (gameState == "INICIO") {
-
 			for (int i = 0; i < entities.size(); i++) {
 				Entity e = entities.get(i);
 				e.tick();
@@ -339,6 +339,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				showMessageGameEnd = false;
 				gameState = "MENU";
 				}
+			
+			if(gameState == "INICIO") {
+				gameState = "MENU";
+				menu.isRun = true;
+			}
 		}
 	}
 

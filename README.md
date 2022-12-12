@@ -1,6 +1,9 @@
 # PebolimGameJAVA
 Repositório destinado a criação de um jogo de pebolim feito inteiramente em java
 
+
+***Evolução do Game***
+
 **Funcionamento Inicial do Game**
 
 ![Gif](/gifs/PebolimGame1.gif)

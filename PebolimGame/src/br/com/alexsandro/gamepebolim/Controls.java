@@ -64,6 +64,9 @@ public class Controls {
 		g.drawString("Cima Goleiro = O ", 60*Game.SCALE, 61*Game.SCALE);
 		g.drawString("Baixo Goleiro = L", 60*Game.SCALE, 65*Game.SCALE );
 		
+		g.setColor(Color.magenta);
+		g.drawString("Botão ESC para pausar!", 36*Game.SCALE, 80*Game.SCALE );
+		
 		g.drawString("Pressione B para voltar ao menu!", 26*Game.SCALE, 100*Game.SCALE );
 	}
 }

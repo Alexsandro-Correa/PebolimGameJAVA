@@ -16,7 +16,6 @@ public class Ball extends Entity {
 	public static boolean ballDown, ballLeft;
 	public static boolean firstLooping = true;
 	public static boolean running = true;
-	public static boolean isGoal = false;
 	public static double speed = 1;
 
 	public static BufferedImage ball;
@@ -28,16 +27,10 @@ public class Ball extends Entity {
 	}
 
 	public void tick() {
-		// x = 63; Meio
-		// y = 55; Meio
-		// x = 18; // Colisao Esquerda
-		// x = 90; //Colisao Direita
-		// y = 54; // Gol
-		// y = 72; // Gol
-		// y = 34; // Colisao y Cima
-		// y = 92; // Colisao y Baixo
-		if (firstLooping == true) {
 
+		if (firstLooping == true) {
+			x = 55;
+			y = 62;
 			ballRight = true;
 			if (ballRight == true) {
 				ballLeft = false;
@@ -54,104 +47,99 @@ public class Ball extends Entity {
 			firstLooping = false;
 		}
 
-		if (isGoal == true) {
-			x = 63;
-			y = 55;
-			isGoal = false;
-		}
-
 		for (int i = 0; i < Game.teamA.length; i++) {
-
-			if (TeamA.left == true && x <= Game.teamA[i].x + 12 && x >= Game.teamA[i].x
-					&& y == (int) (Game.teamA[i].y + 7)) {
+			if (TeamA.left == true && isCollidingTa(Game.teamA[i].getX(), Game.teamA[i].getY())
+					&& (int) y == (int) (Game.teamA[i].y + 7)) {
 				ballRight = true;
 				running = true;
-			} else if (TeamA.left == true && x <= Game.teamA[i].x + 12 && x >= Game.teamA[i].x
+			}
+			if (TeamA.left == true && isCollidingTa(Game.teamA[i].getX(), Game.teamA[i].getY())
 					&& y >= (int) (Game.teamA[i].y + 4) && y <= (int) (Game.teamA[i].y + 6)) {
 				ballRight = true;
 				ballUp = true;
 				running = true;
-			} else if (TeamA.left == true && x <= Game.teamA[i].x + 12 && x >= Game.teamA[i].x
-					&& y >= (int) (Game.teamA[i].y + 7) && y <= (int) (Game.teamA[i].y + 10)) {
+			}
+			if (TeamA.left == true && isCollidingTa(Game.teamA[i].getX(), Game.teamA[i].getY())
+					&& y >= (int) (Game.teamA[i].y + 8) && y <= (int) (Game.teamA[i].y + 10)) {
 				ballRight = true;
 				ballDown = true;
 				running = true;
 			}
 
-			if (TeamA.right == true && x >= Game.teamA[i].x && x <= Game.teamA[i].x + 10
+			if (TeamA.right == true && isCollidingTa(Game.teamA[i].getX(), Game.teamA[i].getY())
 					&& y == (int) (Game.teamA[i].y + 7)) {
 				ballLeft = true;
 				running = true;
-			} else if (TeamA.right == true && x >= Game.teamA[i].x && x <= Game.teamA[i].x + 10
+			} else if (TeamA.right == true && isCollidingTa(Game.teamA[i].getX(), Game.teamA[i].getY())
 					&& y >= (int) (Game.teamA[i].y + 4) && y <= (int) (Game.teamA[i].y + 6)) {
 				ballLeft = true;
 				ballUp = true;
 				running = true;
-			} else if (TeamA.right == true && x >= Game.teamA[i].x && x <= Game.teamA[i].x + 10
-					&& y >= (int) (Game.teamA[i].y + 7) && y <= (int) (Game.teamA[i].y + 10)) {
+			} else if (TeamA.right == true && isCollidingTa(Game.teamA[i].getX(), Game.teamA[i].getY())
+					&& y >= (int) (Game.teamA[i].y + 8) && y <= (int) (Game.teamA[i].y + 10)) {
 				ballLeft = true;
 				ballDown = true;
 				running = true;
 			}
 
-			if (TeamB.right == true && x <= Game.teamB[i].x + 12 && x >= Game.teamB[i].x
+			if (TeamB.right == true && isCollidingTb(Game.teamB[i].getX(), Game.teamB[i].getY())
 					&& y == (int) (Game.teamB[i].y + 7)) {
 				ballRight = true;
 				running = true;
-			} else if (TeamB.right == true && x <= Game.teamB[i].x + 12 && x >= Game.teamB[i].x
+			} else if (TeamB.right == true && isCollidingTb(Game.teamB[i].getX(), Game.teamB[i].getY())
 					&& y >= (int) (Game.teamB[i].y + 4) && y <= (int) (Game.teamB[i].y + 6)) {
 				ballRight = true;
 				ballUp = true;
 				running = true;
-			} else if (TeamB.right == true && x <= Game.teamB[i].x + 12 && x >= Game.teamB[i].x
-					&& y >= (int) (Game.teamB[i].y + 7) && y <= (int) (Game.teamB[i].y + 10)) {
+			} else if (TeamB.right == true && isCollidingTb(Game.teamB[i].getX(), Game.teamB[i].getY())
+					&& y >= (int) (Game.teamB[i].y + 8) && y <= (int) (Game.teamB[i].y + 10)) {
 				ballRight = true;
 				ballDown = true;
 				running = true;
 			}
 
-			if (TeamB.left == true && x >= Game.teamB[i].x && x <= Game.teamB[i].x + 10
+			if (TeamB.left == true && isCollidingTb(Game.teamB[i].getX(), Game.teamB[i].getY())
 					&& y == (int) (Game.teamB[i].y + 7)) {
 				ballLeft = true;
 				running = true;
-			} else if (TeamB.left == true && x >= Game.teamB[i].x && x <= Game.teamB[i].x + 10
+			} else if (TeamB.left == true && isCollidingTb(Game.teamB[i].getX(), Game.teamB[i].getY())
 					&& y >= (int) (Game.teamB[i].y + 4) && y <= (int) (Game.teamB[i].y + 6)) {
 				ballLeft = true;
 				ballUp = true;
 				running = true;
-			} else if (TeamB.left == true && x >= Game.teamB[i].x && x <= Game.teamB[i].x + 10
-					&& y >= (int) (Game.teamB[i].y + 7) && y <= (int) (Game.teamB[i].y + 10)) {
+			} else if (TeamB.left == true && isCollidingTb(Game.teamB[i].getX(), Game.teamB[i].getY())
+					&& y >= (int) (Game.teamB[i].y + 8) && y <= (int) (Game.teamB[i].y + 10)) {
 				ballLeft = true;
 				ballDown = true;
 				running = true;
 			}
 
-			if (GoalkeeperA.left == true && x <= Game.keeperA.x + 12 && x >= Game.keeperA.x
+			if (GoalkeeperA.left == true && isCollidingGa(Game.keeperA.getX(), Game.keeperA.getY())
 					&& y == (int) (Game.keeperA.y + 7)) {
 				ballRight = true;
 				running = true;
-			} else if (GoalkeeperA.left == true && x <= Game.keeperA.x + 12 && x >= Game.keeperA.x
+			} else if (GoalkeeperA.left == true && isCollidingGa(Game.keeperA.getX(), Game.keeperA.getY())
 					&& y >= (int) (Game.keeperA.y + 4) && y <= (int) (Game.keeperA.y + 6)) {
 				ballRight = true;
 				ballUp = true;
 				running = true;
-			} else if (GoalkeeperA.left == true && x <= Game.keeperA.x + 12 && x >= Game.keeperA.x
-					&& y >= (int) (Game.keeperA.y + 7) && y <= (int) (Game.keeperA.y + 10)) {
+			} else if (GoalkeeperA.left == true && isCollidingGa(Game.keeperA.getX(), Game.keeperA.getY())
+					&& y >= (int) (Game.keeperA.y + 8) && y <= (int) (Game.keeperA.y + 10)) {
 				ballRight = true;
 				ballDown = true;
 				running = true;
 			}
 
-			if (GoalkeeperB.left == true && x >= Game.keeperB.x && x <= Game.keeperB.x + 10
-					&& y == (int) (Game.keeperB.y + 7)) {
+			if (GoalkeeperB.left == true && isCollidingGb(Game.keeperB.getX(), Game.keeperB.getY())
+					&& y == (int) (Game.keeperB.y + 6)) {
 				ballLeft = true;
 				running = true;
-			} else if (GoalkeeperB.left == true && x >= Game.keeperB.x && x <= Game.keeperB.x + 10
+			} else if (GoalkeeperB.left == true && isCollidingGb(Game.keeperB.getX(), Game.keeperB.getY())
 					&& y >= (int) (Game.keeperB.y + 4) && y <= (int) (Game.keeperB.y + 6)) {
 				ballLeft = true;
 				ballUp = true;
 				running = true;
-			} else if (GoalkeeperB.left == true && x >= Game.keeperB.x && x <= Game.keeperB.x + 10
+			} else if (GoalkeeperB.left == true && isCollidingGb(Game.keeperB.getX(), Game.keeperB.getY())
 					&& y >= (int) (Game.keeperB.y + 7) && y <= (int) (Game.keeperB.y + 10)) {
 				ballLeft = true;
 				ballDown = true;
@@ -161,22 +149,28 @@ public class Ball extends Entity {
 
 		if (running == true) {
 
-			if ((int) x <= 18 && (int) y > 53 && (int) y < 73) {
+			if ((int) x <= 18 && (int) y > 53 && (int) y < 73 && !isColliding(getX(), getY())) {
 				Sounds.gol.play();
 				x -= speed * 2;
-				isGoal = true;
 				TeamB.gol++;
-				ballRight = true;
+				ballRight = false;
 				ballLeft = false;
+				ballUp = false;
+				ballDown = false;
+				x = 59;
+				y = 64;
 			}
 
-			if ((int) x >= 90 && (int) y > 53 && (int) y < 73) {
+			if ((int) x >= 90 && (int) y > 53 && (int) y < 73 && !isColliding(getX(), getY())) {
 				Sounds.gol.play();
 				x += speed * 2;
-				isGoal = true;
 				TeamA.gol++;
 				ballRight = false;
-				ballLeft = true;
+				ballLeft = false;
+				ballUp = false;
+				ballDown = false;
+				x = 50;
+				y = 64;
 			}
 
 			if (ballRight == true) {
@@ -234,35 +228,65 @@ public class Ball extends Entity {
 			ballRight = false;
 			ballLeft = false;
 		}
-
 	}
 
 	public boolean isColliding(int xnext, int ynext) {
 
+		if (isCollidingTa(xnext, ynext) || isCollidingTb(xnext, ynext) || isCollidingGa(xnext, ynext)
+				|| isCollidingGb(xnext, ynext)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isCollidingTa(int xnext, int ynext) {
 		Rectangle playerCurrent = new Rectangle((int) x, (int) y, 3, 3);
 
-		
-		 for (int i = 0; i < Game.teamA.length; i++) { TeamA tA = Game.teamA[i];
-		 Rectangle targetPlayer = new Rectangle(tA.getX()+8, tA.getY()+6, 3, 3); if
-		  (playerCurrent.intersects(targetPlayer)) { return true; }
-		 
-		 }
-		  
-		  for (int i = 0; i < Game.teamB.length; i++) { TeamB tB = Game.teamB[i];
-		  Rectangle targetPlayer = new Rectangle(tB.getX()+8, tB.getY()+6, 3, 3); if
-		 (playerCurrent.intersects(targetPlayer)) { return true; }
-		  
-		  }
-		  
-		  GoalkeeperA gA = Game.keeperA; Rectangle targetKeeperA = new
-		  Rectangle(gA.getX()+8, gA.getY()+6, 3, 3); if
-		  (playerCurrent.intersects(targetKeeperA)) { return true; }
-		  
-		  GoalkeeperB gB = Game.keeperB; Rectangle targetKeeperB = new
-		  Rectangle(gB.getX()+8, gB.getY()+6, 3, 3); if
-		  (playerCurrent.intersects(targetKeeperB)) { return true; }
-		 
+		for (int i = 0; i < Game.teamA.length; i++) {
+			TeamA tA = Game.teamA[i];
+			Rectangle targetPlayer = new Rectangle(tA.getX() + 7, tA.getY() + 6, 3, 3);
+			if (playerCurrent.intersects(targetPlayer)) {
+				return true;
+			}
 
+		}
+		return false;
+	}
+
+	public boolean isCollidingTb(int xnext, int ynext) {
+		Rectangle playerCurrent = new Rectangle((int) x, (int) y, 3, 3);
+
+		for (int i = 0; i < Game.teamB.length; i++) {
+			TeamB tB = Game.teamB[i];
+			Rectangle targetPlayer = new Rectangle(tB.getX() + 6, tB.getY() + 6, 3, 3);
+			if (playerCurrent.intersects(targetPlayer)) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	public boolean isCollidingGa(int xnext, int ynext) {
+		Rectangle playerCurrent = new Rectangle((int) x, (int) y, 3, 3);
+
+		GoalkeeperA gA = Game.keeperA;
+		Rectangle targetKeeperA = new Rectangle(gA.getX() + 7, gA.getY() + 6, 3, 3);
+		if (playerCurrent.intersects(targetKeeperA)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isCollidingGb(int xnext, int ynext) {
+		Rectangle playerCurrent = new Rectangle((int) x, (int) y, 3, 3);
+
+		GoalkeeperB gB = Game.keeperB;
+		Rectangle targetKeeperB = new Rectangle(gB.getX() + 6, gB.getY() + 6, 3, 3);
+		if (playerCurrent.intersects(targetKeeperB)) {
+			return true;
+		}
 		return false;
 	}
 

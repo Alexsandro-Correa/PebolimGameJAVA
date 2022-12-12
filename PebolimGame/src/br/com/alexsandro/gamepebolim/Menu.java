@@ -15,6 +15,7 @@ public String[] options = {"Iniciar", "Controles" ,"Creditos", "Sair"};
 	public int currentOption = 0;
 	public int maxOption = options.length - 1;
 	public boolean up,down,enter;
+	public boolean isRun = false;
 	
 	private static Sprites sprite  = new Sprites("/backgroundinicio.png");
 	public static BufferedImage background =  Menu.sprite.getSprite(0,0,80, 97);
@@ -37,7 +38,6 @@ public String[] options = {"Iniciar", "Controles" ,"Creditos", "Sair"};
 			}
 		}
 		if(enter) {
-			Sounds.torcida.play();
 			enter = false;
 			if(options[currentOption] == "Iniciar") {
 				Game.gameState = "INICIO";
@@ -69,13 +69,22 @@ public String[] options = {"Iniciar", "Controles" ,"Creditos", "Sair"};
 		
 		g.setColor(Color.blue);
 		g.setFont(new Font("arial",Font.BOLD,6*Game.SCALE));
-		g.drawString("Iniciar", 48*Game.SCALE, 48*Game.SCALE);
+		if(isRun == false) {
+			g.drawString("Iniciar", 48*Game.SCALE, 48*Game.SCALE);
+		}else {
+			g.drawString("Continuar", 44*Game.SCALE, 48*Game.SCALE);
+		}
+		
 		g.drawString("Controles", 44*Game.SCALE ,56*Game.SCALE );
 		g.drawString("Créditos",46*Game.SCALE , 64*Game.SCALE);
 		g.drawString("Sair",51*Game.SCALE , 72*Game.SCALE);
 		
 		if(options[currentOption] == "Iniciar") {
+			if(isRun == false) {
 			g.drawImage(ballIcon,40*Game.SCALE, 44*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
+			}else {
+				g.drawImage(ballIcon,36*Game.SCALE, 44*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
+			}
 		}else if(options[currentOption] == "Controles") {
 			g.drawImage(ballIcon,36*Game.SCALE ,52*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
 		}else if(options[currentOption] == "Creditos") {
