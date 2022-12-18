@@ -26,7 +26,11 @@ public class Credits {
 		g2.setColor(new Color(0, 0, 0, 100));
 		g2.fillRect(0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE);
 		g.drawImage(background,0,0,Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE,null);
-		g.setColor(Color.magenta);
+		
+		g2.setColor(new Color(0,0,0,80));
+		g2.fillRect(0,0, Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE);
+		
+		g.setColor(new Color(255, 91, 76));
 		g.setFont(new Font("Arial",Font.BOLD,8*Game.SCALE));
 		g.drawString("Créditos", 39*Game.SCALE,18*Game.SCALE);
 		
@@ -49,9 +53,17 @@ public class Credits {
 		g.setColor(Color.black);
 		g.drawString("Alexsandro Corrêa Rosa Matos", 28*Game.SCALE, 60*Game.SCALE);
 		
+		g.setFont(new Font("arial",Font.BOLD,5*Game.SCALE));
+		g.setColor(Color.blue);
+		g.drawString("Audio", 50*Game.SCALE, 80*Game.SCALE);
+		
+		g.setFont(new Font("arial",Font.BOLD,4*Game.SCALE));
+		g.setColor(Color.black);
+		g.drawString("Alexsandro Corrêa Rosa Matos", 28*Game.SCALE, 90*Game.SCALE);
+		
 		g.drawString("Erick Davi de Liz Rosa", 36*Game.SCALE, 68*Game.SCALE);
 		
-		g.setColor(Color.red);
+		g.setColor(new Color(255,255,255));
 		g.drawString("Pressione B para voltar ao menu!", 26*Game.SCALE, 100*Game.SCALE );
 	}
 	

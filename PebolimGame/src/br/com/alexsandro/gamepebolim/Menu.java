@@ -61,36 +61,43 @@ public String[] options = {"Iniciar", "Controles" ,"Creditos", "Sair"};
 		g2.setColor(new Color(0, 0, 0, 100));
 		g2.fillRect(0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE);
 		g.drawImage(background,0,0,Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE,null);
-		g.setColor(Color.magenta);
+		
+		g2.setColor(new Color(0,0,0,80));
+		g2.fillRect(0,0, Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE);
+		
+		g.setColor(new Color(255, 91, 76));
 		g.setFont(new Font("Arial",Font.BOLD,8*Game.SCALE));
 		g.drawString("Peb  lim Game", 29*Game.SCALE,29*Game.SCALE);
 		g.drawImage(ballIcon,44*Game.SCALE,25*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
 		//Menu Options
 		
-		g.setColor(Color.blue);
-		g.setFont(new Font("arial",Font.BOLD,6*Game.SCALE));
+		
+		
+		
+		g.setColor(new Color(110,255,255));
+		g.setFont(new Font("Monospaced",Font.BOLD,6*Game.SCALE));
 		if(isRun == false) {
-			g.drawString("Iniciar", 48*Game.SCALE, 48*Game.SCALE);
+			g.drawString("Iniciar", 44*Game.SCALE, 48*Game.SCALE);
 		}else {
-			g.drawString("Continuar", 44*Game.SCALE, 48*Game.SCALE);
+			g.drawString("Continuar", 41*Game.SCALE, 48*Game.SCALE);
 		}
 		
-		g.drawString("Controles", 44*Game.SCALE ,56*Game.SCALE );
-		g.drawString("Créditos",46*Game.SCALE , 64*Game.SCALE);
-		g.drawString("Sair",51*Game.SCALE , 72*Game.SCALE);
+		g.drawString("Controles", 41*Game.SCALE ,56*Game.SCALE );
+		g.drawString("Créditos",43*Game.SCALE , 64*Game.SCALE);
+		g.drawString("Sair",49*Game.SCALE , 72*Game.SCALE);
 		
 		if(options[currentOption] == "Iniciar") {
 			if(isRun == false) {
-			g.drawImage(ballIcon,40*Game.SCALE, 44*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
+			g.drawImage(ballIcon,37*Game.SCALE, 44*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
 			}else {
-				g.drawImage(ballIcon,36*Game.SCALE, 44*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
+				g.drawImage(ballIcon,34*Game.SCALE, 44*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
 			}
 		}else if(options[currentOption] == "Controles") {
-			g.drawImage(ballIcon,36*Game.SCALE ,52*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
+			g.drawImage(ballIcon,34*Game.SCALE ,52*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
 		}else if(options[currentOption] == "Creditos") {
-			g.drawImage(ballIcon,38*Game.SCALE , 60*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
+			g.drawImage(ballIcon,35*Game.SCALE , 60*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
 		}else if(options[currentOption] == "Sair") {
-			g.drawImage(ballIcon,44*Game.SCALE , 68*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
+			g.drawImage(ballIcon,42*Game.SCALE , 68*Game.SCALE,4*Game.SCALE,4*Game.SCALE,null);
 		}
 	}
 	

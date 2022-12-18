@@ -338,6 +338,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if(gameState == "END GAME") {
 				showMessageGameEnd = false;
 				gameState = "MENU";
+				menu.isRun = false;
 				}
 			
 			if(gameState == "INICIO") {

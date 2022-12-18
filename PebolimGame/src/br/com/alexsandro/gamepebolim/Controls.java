@@ -26,12 +26,16 @@ public class Controls {
 		g2.setColor(new Color(0, 0, 0, 100));
 		g2.fillRect(0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE);
 		g.drawImage(background,0,0,Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE,null);
-		g.setColor(Color.magenta);
+		
+		g2.setColor(new Color(0,0,0,80));
+		g2.fillRect(0,0, Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE);
+		
+		g.setColor(new Color(255, 91, 76));
 		g.setFont(new Font("Arial",Font.BOLD,8*Game.SCALE));
 		g.drawString("Controles", 39*Game.SCALE,18*Game.SCALE);
 		
 		
-		g.setColor(Color.blue);
+		g.setColor(new Color(110,255,255));
 		g.setFont(new Font("arial",Font.BOLD,5*Game.SCALE));
 		
 		g.drawString("Time Azul ", 22*Game.SCALE, 36*Game.SCALE);
@@ -47,7 +51,7 @@ public class Controls {
 		g.drawString("Cima Goleiro = Q ", 16*Game.SCALE, 61*Game.SCALE);
 		g.drawString("Baixo Goleiro = Z", 16*Game.SCALE, 65*Game.SCALE );
 		
-		g.setColor(Color.red);
+		g.setColor(new Color(255,0,70));
 		
 		g.setFont(new Font("arial",Font.BOLD,5*Game.SCALE));
 		
@@ -64,8 +68,8 @@ public class Controls {
 		g.drawString("Cima Goleiro = O ", 60*Game.SCALE, 61*Game.SCALE);
 		g.drawString("Baixo Goleiro = L", 60*Game.SCALE, 65*Game.SCALE );
 		
-		g.setColor(Color.magenta);
-		g.drawString("Botão ESC para pausar!", 36*Game.SCALE, 80*Game.SCALE );
+		g.setColor(new Color(255, 255, 255));
+		g.drawString("Botão ESC para pausar!", 36*Game.SCALE, 90*Game.SCALE );
 		
 		g.drawString("Pressione B para voltar ao menu!", 26*Game.SCALE, 100*Game.SCALE );
 	}
