@@ -1,0 +1,455 @@
+package br.com.alexsandro.gamepebolim;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import javax.swing.JFrame;
+
+import br.com.alexsandro.gamepebolim.field.Field;
+import br.com.alexsandro.gamepebolim.players.Entity;
+import br.com.alexsandro.gamepebolim.players.GoalkeeperA;
+import br.com.alexsandro.gamepebolim.players.GoalkeeperB;
+import br.com.alexsandro.gamepebolim.players.Ball;
+import br.com.alexsandro.gamepebolim.players.TeamA;
+import br.com.alexsandro.gamepebolim.players.TeamB;
+import br.com.alexsandro.gamepebolim.sprites.Sprites;
+
+public class Game extends Canvas implements Runnable, KeyListener {
+
+	private static final long serialVersionUID = 1L;
+	public static int WIDTH = 112;
+	public static int HEIGHT = 112;
+	public static int SCALE = 8;
+	public static int size = 8;
+
+	public BufferedImage layer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	private boolean isRunning = true;
+	public static TeamA teamA[] = new TeamA[8];
+	public static TeamB teamB[] = new TeamB[8];
+	public static GoalkeeperA keeperA;
+	public static GoalkeeperB keeperB;
+	public static Ball ball;
+	public Menu menu;
+	public Controls controls;
+	public Credits credits;
+	public static Options options;
+
+	public static JFrame frame;
+	public static boolean resizable;
+
+	public static BufferedImage image;
+
+	public static List<Entity> entities;
+	public static List<TeamA> tA;
+	public static List<TeamB> tB;
+	public static Sprites sprite;
+	public static Field field;
+	public static Random rand = new Random();
+	public static Random rand2 = new Random();
+
+	private boolean showMessageGameEnd = false;
+	private int framesGameEnd = 0;
+
+	public static String gameState = "MENU";
+
+	public Game() {
+		rand.nextBoolean();
+		rand2.nextBoolean();
+		
+		this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+		this.addKeyListener(this);
+
+		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		entities = new ArrayList<Entity>();
+		tA = new ArrayList<TeamA>();
+		tB = new ArrayList<TeamB>();
+		sprite = new Sprites("/SpritesPebolim.png");
+		field = new Field("/map.png");
+
+		entities.add(ball = new Ball(80, 64, 16, 16, sprite.getSprite(32, 64, 16, 16)));
+
+		// Goleiros A e B
+		entities.add(keeperA = new GoalkeeperA(11, 56, 16, 16, sprite.getSprite(32, 48, 16, 16)));
+		entities.add(keeperB = new GoalkeeperB(85, 56, 16, 16, sprite.getSprite(32, 32, 16, 16)));
+
+		// Defensores A
+		entities.add(teamA[0] = new TeamA(30, 75, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[1] = new TeamA(30, 57, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[2] = new TeamA(30, 39, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+
+		// Meias A
+		entities.add(teamA[3] = new TeamA(54, 75, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[4] = new TeamA(54, 57, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[5] = new TeamA(54, 39, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+
+		// Atacantes A
+		entities.add(teamA[6] = new TeamA(78, 66, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		entities.add(teamA[7] = new TeamA(78, 48, 16, 16, sprite.getSprite(32, 16, 16, 16)));
+		// Defensores B
+		entities.add(teamB[0] = new TeamB(66, 75, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[1] = new TeamB(66, 57, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[2] = new TeamB(66, 39, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+
+		// Meias B
+		entities.add(teamB[3] = new TeamB(42, 75, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[4] = new TeamB(42, 57, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[5] = new TeamB(42, 39, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+
+		// Atacantes B
+		entities.add(teamB[6] = new TeamB(18, 66, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+		entities.add(teamB[7] = new TeamB(18, 48, 16, 16, sprite.getSprite(32, 0, 16, 16)));
+
+		menu = new Menu();
+		controls = new Controls();
+		credits = new Credits();
+		options = new Options();
+	}
+
+	public static void main(String[] args) {
+		Game game = new Game();
+		frame = new JFrame("Pebolim Game");
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(game);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+
+		new Thread(game).start();
+
+	}
+
+	public void tick() {
+		
+		frame.setLocationRelativeTo(null);
+
+		if (Options.sound) {
+			Sounds.fundo.loop();
+		} else {
+			Sounds.fundo.stop();
+		}
+
+		if (resizable == true) {
+			resizable = false;
+			frame.setBounds(0, 0, (112 * SCALE)+15, (112 * SCALE)+25);
+			
+		}
+
+		if (Game.size == 2) {
+			SCALE = 2;
+		} else if (Game.size == 3) {
+			SCALE = 3;
+		} else if (Game.size == 4) {
+			SCALE = 4;
+		} else if (Game.size == 5) {
+			SCALE = 5;
+		} else if (Game.size == 6) {
+			SCALE = 6;
+		} else if (Game.size == 7) {
+			SCALE = 7;
+		} else if (Game.size == 8) {
+			SCALE = 8;
+		}
+
+		if (gameState == "INICIO") {
+			for (int i = 0; i < entities.size(); i++) {
+				Entity e = entities.get(i);
+				e.tick();
+			}
+
+			if (TeamA.gol == TeamA.maxGol) {
+				TeamA.finalGol = TeamA.gol;
+				TeamB.finalGol = TeamB.gol;
+				TeamA.gol = 0;
+				TeamB.gol = 0;
+				gameState = "END GAME";
+			} else if (TeamB.gol == TeamB.maxGol) {
+				TeamA.finalGol = TeamA.gol;
+				TeamB.finalGol = TeamB.gol;
+				TeamA.gol = 0;
+				TeamB.gol = 0;
+				gameState = "END GAME";
+			}
+		} else if (gameState == "END GAME") {
+			framesGameEnd++;
+			if (framesGameEnd == 60) {
+				framesGameEnd = 0;
+				if (showMessageGameEnd) {
+					showMessageGameEnd = false;
+				} else {
+					showMessageGameEnd = true;
+				}
+			}
+		} else if (gameState == "MENU") {
+			menu.tick();
+		} else if (gameState == "CONTROLES") {
+			controls.tick();
+		} else if (gameState == "CREDITOS") {
+			credits.tick();
+		} else if (gameState == "OPCOES") {
+			options.tick();
+		} else if (gameState == "SAIR") {
+			System.exit(0);
+		}
+
+	}
+
+	public void render() {
+		
+		BufferStrategy bs = this.getBufferStrategy();
+		if (bs == null) {
+			this.createBufferStrategy(3);
+			return;
+		}
+		Graphics g = image.getGraphics();
+		g.setColor(new Color(0, 255, 0));
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+
+		g.dispose();
+		g = bs.getDrawGraphics();
+		g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+
+		if (gameState == "INICIO") {
+			field.render(g);
+			for (int i = 0; i < entities.size(); i++) {
+				Entity e = entities.get(i);
+				e.render(g);
+			}
+			g.setFont(new Font("Arial", Font.BOLD, 8 * SCALE));
+			g.setColor(Color.white);
+			g.drawString("" + TeamA.gol, 46 * SCALE, 12 * SCALE);
+			g.drawString(TeamB.gol + "", 61 * SCALE, 12 * SCALE);
+			g.drawString(" : ", 52 * SCALE, 12 * SCALE);
+			g.drawImage(TeamA.logo, 24 * SCALE, 2 * SCALE, 16 * SCALE, 16 * SCALE, null);
+			g.drawImage(TeamB.logo, 70 * SCALE, 2 * SCALE, 16 * SCALE, 16 * SCALE, null);
+		}
+
+		if (gameState == "MENU") {
+			menu.render(g);
+		}
+
+		if (gameState == "END GAME") {
+			Graphics2D g2 = (Graphics2D) g;
+			g.drawImage(Menu.background, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+			g2.setColor(new Color(0, 0, 0, 100));
+			g2.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
+			g2.setFont(new Font("Arial", Font.BOLD, 8 * SCALE));
+			g2.drawString("" + TeamA.finalGol, 46 * SCALE, 60 * SCALE);
+			g2.drawString(TeamB.finalGol + "", 62 * SCALE, 60 * SCALE);
+			g2.drawString(" X ", 52 * SCALE, 60 * SCALE);
+			g2.drawImage(TeamA.logo, 28 * SCALE, 50 * SCALE, 16 * SCALE, 16 * SCALE, null);
+			g2.drawImage(TeamB.logo, 69 * SCALE, 50 * SCALE, 16 * SCALE, 16 * SCALE, null);
+		}
+		if (showMessageGameEnd) {
+			g.drawString("Press ESC to Return!", 16 * SCALE, 40 * SCALE);
+		}
+
+		if (gameState == "CONTROLES") {
+			controls.render(g);
+		}
+
+		if (gameState == "OPCOES") {
+			options.render(g);
+		}
+
+		if (gameState == "CREDITOS") {
+			credits.render(g);
+		}
+
+		bs.show();
+
+	}
+
+	@Override
+	public void run() {
+		long lastTime = System.nanoTime();
+		double amountOfTicks = 60.0;
+		double ns = 1000000000 / amountOfTicks;
+		double delta = 0;
+		int frames = 0;
+		double timer = System.currentTimeMillis();
+		requestFocus();
+		while (isRunning) {
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			if (delta >= 1) {
+				tick();
+				render();
+				frames++;
+				delta--;
+			}
+
+			if (System.currentTimeMillis() - timer >= 1000) {
+				System.out.println("FPS: " + frames);
+				frames = 0;
+				timer += 1000;
+			}
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_W) {
+			TeamA.up = true;
+			if (gameState == "MENU") {
+				menu.up = true;
+			}
+			if (gameState == "OPCOES") {
+				options.up = true;
+			}
+
+		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			TeamA.down = true;
+			if (gameState == "MENU") {
+				menu.down = true;
+			}
+			if (gameState == "OPCOES") {
+				options.down = true;
+			}
+
+		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			TeamA.right = true;
+			GoalkeeperA.right = true;
+		} else if (e.getKeyCode() == KeyEvent.VK_D) {
+			TeamA.left = true;
+			GoalkeeperA.left = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			TeamB.up = true;
+			if (gameState == "MENU") {
+				menu.up = true;
+			}
+			if (gameState == "OPCOES") {
+				options.up = true;
+			}
+
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			TeamB.down = true;
+			if (gameState == "MENU") {
+				menu.down = true;
+			}
+			if (gameState == "OPCOES") {
+				options.down = true;
+			}
+
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			TeamB.right = true;
+			GoalkeeperB.right = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			TeamB.left = true;
+			GoalkeeperB.left = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_Q) {
+			GoalkeeperA.up = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
+			GoalkeeperA.down = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_O) {
+			GoalkeeperB.up = true;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_L) {
+			GoalkeeperB.down = true;
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (gameState == "MENU") {
+				menu.enter = true;
+			}
+			if (gameState == "OPCOES") {
+				options.enter = true;
+			}
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_B) {
+			if (gameState == "CONTROLES") {
+				controls.back = true;
+			}
+			if (gameState == "CREDITOS") {
+				credits.back = true;
+			}
+			if (gameState == "OPCOES") {
+				options.back = true;
+			}
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			if (gameState == "END GAME") {
+				showMessageGameEnd = false;
+				gameState = "MENU";
+				menu.isRun = false;
+			}
+
+			if (gameState == "INICIO") {
+				gameState = "MENU";
+				menu.isRun = true;
+			}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_W) {
+			TeamA.up = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			TeamA.down = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			TeamA.right = false;
+			GoalkeeperA.right = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_D) {
+			TeamA.left = false;
+			GoalkeeperA.left = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			TeamB.up = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			TeamB.down = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			TeamB.right = false;
+			GoalkeeperB.right = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			TeamB.left = false;
+			GoalkeeperB.left = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_Q) {
+			GoalkeeperA.up = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
+			GoalkeeperA.down = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_O) {
+			GoalkeeperB.up = false;
+
+		} else if (e.getKeyCode() == KeyEvent.VK_L) {
+			GoalkeeperB.down = false;
+
+		}
+
+	}
+
+}

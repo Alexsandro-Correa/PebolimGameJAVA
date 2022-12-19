@@ -24,6 +24,13 @@ public class Sounds {
 			}
 		}
 		
+		public void stop() {
+			if(clips == null) {
+				return;
+			}
+			clips[p].stop();
+		}
+		
 		public void play() {
 			if(clips == null) {
 				return;
@@ -45,7 +52,7 @@ public class Sounds {
 		}
 	}
 		public static Clips gol = load("/gol.wav", 1);
-		public static Clips torcida = load("/torcida.wav", 1);
+		public static Clips fundo = load("/pebolim.wav", 1);
 		
 		private static Clips load(String name,int count) {
 			try {

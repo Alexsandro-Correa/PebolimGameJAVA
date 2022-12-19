@@ -24,12 +24,12 @@
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperA"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.sprites.Sprites"/>
     <fullyQualifiedTypeName name="java.awt.Graphics2D"/>
-    <fullyQualifiedTypeName name="java.awt.Graphics"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.Controls"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
-    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.Sounds"/>
     <fullyQualifiedTypeName name="java.awt.Toolkit"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.Game"/>
     <fullyQualifiedTypeName name="java.awt.Font"/>
+    <fullyQualifiedTypeName name="java.awt.Graphics"/>
+    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.Sounds"/>
 </qualifiedTypeNameHistroy>

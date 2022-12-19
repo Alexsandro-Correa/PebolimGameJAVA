@@ -31,6 +31,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static int WIDTH = 112;
 	public static int HEIGHT = 112;
 	public static int SCALE = 8;
+	public static int size = 8;
 
 	public BufferedImage layer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private boolean isRunning = true;
@@ -42,6 +43,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public Menu menu;
 	public Controls controls;
 	public Credits credits;
+	public static Options options;
+
+	public static JFrame frame;
+	public static boolean resizable;
 
 	public static BufferedImage image;
 
@@ -61,7 +66,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public Game() {
 		rand.nextBoolean();
 		rand2.nextBoolean();
-
+		
 		this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		this.addKeyListener(this);
 
@@ -71,7 +76,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		tB = new ArrayList<TeamB>();
 		sprite = new Sprites("/SpritesPebolim.png");
 		field = new Field("/map.png");
-		Sounds.torcida.loop();
 
 		entities.add(ball = new Ball(80, 64, 16, 16, sprite.getSprite(32, 64, 16, 16)));
 
@@ -109,11 +113,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		menu = new Menu();
 		controls = new Controls();
 		credits = new Credits();
+		options = new Options();
 	}
 
 	public static void main(String[] args) {
 		Game game = new Game();
-		JFrame frame = new JFrame("Pebolim Game");
+		frame = new JFrame("Pebolim Game");
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(game);
@@ -126,6 +131,44 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	}
 
 	public void tick() {
+		
+		frame.setLocationRelativeTo(null);
+
+		if (Options.sound) {
+			Sounds.fundo.loop();
+		} else {
+			Sounds.fundo.stop();
+		}
+
+		if (resizable == true) {
+			
+			if (Game.size == 2) {
+				SCALE = 2;
+				frame.setBounds(0, 0, (112 * SCALE)+15, (112 * SCALE)+35);
+			} else if (Game.size == 3) {
+				SCALE = 3;
+				frame.setBounds(0, 0, (112 * SCALE)+15, (112 * SCALE)+38);
+			} else if (Game.size == 4) {
+				SCALE = 4;
+				frame.setBounds(0, 0, (112 * SCALE)+15, (112 * SCALE)+38);
+			} else if (Game.size == 5) {
+				SCALE = 5;
+				frame.setBounds(0, 0, (112 * SCALE)+15, (112 * SCALE)+38);
+			} else if (Game.size == 6) {
+				SCALE = 6;
+				frame.setBounds(0, 0, (112 * SCALE)+15, (112 * SCALE)+35);
+			} else if (Game.size == 7) {
+				SCALE = 7;
+				frame.setBounds(0, 0, (112 * SCALE)+15, (112 * SCALE)+30);
+			} else if (Game.size == 8) {
+				SCALE = 8;
+				frame.setBounds(0, 0, (112 * SCALE)+15, (112 * SCALE)+25);
+			}
+			resizable = false;			
+		}
+
+		
+
 		if (gameState == "INICIO") {
 			for (int i = 0; i < entities.size(); i++) {
 				Entity e = entities.get(i);
@@ -159,8 +202,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			menu.tick();
 		} else if (gameState == "CONTROLES") {
 			controls.tick();
-		}else if (gameState == "CREDITOS") {
+		} else if (gameState == "CREDITOS") {
 			credits.tick();
+		} else if (gameState == "OPCOES") {
+			options.tick();
 		} else if (gameState == "SAIR") {
 			System.exit(0);
 		}
@@ -168,9 +213,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	}
 
 	public void render() {
-
-		Color font = new Color(255, 255, 255);
-
+		
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
 			this.createBufferStrategy(3);
@@ -191,7 +234,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				e.render(g);
 			}
 			g.setFont(new Font("Arial", Font.BOLD, 8 * SCALE));
-			g.setColor(font);
+			g.setColor(Color.white);
 			g.drawString("" + TeamA.gol, 46 * SCALE, 12 * SCALE);
 			g.drawString(TeamB.gol + "", 61 * SCALE, 12 * SCALE);
 			g.drawString(" : ", 52 * SCALE, 12 * SCALE);
@@ -205,11 +248,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 		if (gameState == "END GAME") {
 			Graphics2D g2 = (Graphics2D) g;
-			g.drawImage(Menu.background, 0,0,WIDTH*SCALE, HEIGHT*SCALE,null);
+			g.drawImage(Menu.background, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 			g2.setColor(new Color(0, 0, 0, 100));
 			g2.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
 			g2.setFont(new Font("Arial", Font.BOLD, 8 * SCALE));
-			g2.setColor(font);
 			g2.drawString("" + TeamA.finalGol, 46 * SCALE, 60 * SCALE);
 			g2.drawString(TeamB.finalGol + "", 62 * SCALE, 60 * SCALE);
 			g2.drawString(" X ", 52 * SCALE, 60 * SCALE);
@@ -223,7 +265,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		if (gameState == "CONTROLES") {
 			controls.render(g);
 		}
-		
+
+		if (gameState == "OPCOES") {
+			options.render(g);
+		}
+
 		if (gameState == "CREDITOS") {
 			credits.render(g);
 		}
@@ -272,11 +318,17 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (gameState == "MENU") {
 				menu.up = true;
 			}
+			if (gameState == "OPCOES") {
+				options.up = true;
+			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			TeamA.down = true;
 			if (gameState == "MENU") {
 				menu.down = true;
+			}
+			if (gameState == "OPCOES") {
+				options.down = true;
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
@@ -291,11 +343,17 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (gameState == "MENU") {
 				menu.up = true;
 			}
+			if (gameState == "OPCOES") {
+				options.up = true;
+			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			TeamB.down = true;
 			if (gameState == "MENU") {
 				menu.down = true;
+			}
+			if (gameState == "OPCOES") {
+				options.down = true;
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -324,24 +382,31 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (gameState == "MENU") {
 				menu.enter = true;
 			}
+			if (gameState == "OPCOES") {
+				options.enter = true;
+			}
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_B) {
 			if (gameState == "CONTROLES") {
 				controls.back = true;
-			} if(gameState == "CREDITOS") {
+			}
+			if (gameState == "CREDITOS") {
 				credits.back = true;
 			}
+			if (gameState == "OPCOES") {
+				options.back = true;
+			}
 		}
-		
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			if(gameState == "END GAME") {
+
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			if (gameState == "END GAME") {
 				showMessageGameEnd = false;
 				gameState = "MENU";
 				menu.isRun = false;
-				}
-			
-			if(gameState == "INICIO") {
+			}
+
+			if (gameState == "INICIO") {
 				gameState = "MENU";
 				menu.isRun = true;
 			}

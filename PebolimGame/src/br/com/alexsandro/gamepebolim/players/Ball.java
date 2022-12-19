@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import br.com.alexsandro.gamepebolim.Game;
+import br.com.alexsandro.gamepebolim.Options;
 import br.com.alexsandro.gamepebolim.Sounds;
 
 public class Ball extends Entity {
@@ -150,7 +151,9 @@ public class Ball extends Entity {
 		if (running == true) {
 
 			if ((int) x <= 18 && (int) y > 53 && (int) y < 73 && !isColliding(getX(), getY())) {
-				Sounds.gol.play();
+				if (Options.sound) {
+					Sounds.gol.play();
+				}
 				x -= speed * 2;
 				TeamB.gol++;
 				ballRight = false;
@@ -162,7 +165,9 @@ public class Ball extends Entity {
 			}
 
 			if ((int) x >= 90 && (int) y > 53 && (int) y < 73 && !isColliding(getX(), getY())) {
-				Sounds.gol.play();
+				if (Options.sound) {
+					Sounds.gol.play();
+				}
 				x += speed * 2;
 				TeamA.gol++;
 				ballRight = false;

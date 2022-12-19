@@ -12,7 +12,7 @@ public class TeamA extends Entity {
 	public static double newX;
 	public static double newY;
 	public static double speed = 0.1;
-	public static byte gol = 0, maxGol = 1, finalGol;
+	public static byte gol = 0, maxGol = 5, finalGol;
 
 	public static BufferedImage rightPlayerA;
 	public static BufferedImage leftPlayerA;
