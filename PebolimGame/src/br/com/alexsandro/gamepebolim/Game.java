@@ -44,6 +44,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public Controls controls;
 	public Credits credits;
 	public static Options options;
+	public Mode mode;
 
 	public static JFrame frame;
 	public static boolean resizable;
@@ -114,6 +115,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		controls = new Controls();
 		credits = new Credits();
 		options = new Options();
+		mode = new Mode();
 	}
 
 	public static void main(String[] args) {
@@ -198,7 +200,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 					showMessageGameEnd = true;
 				}
 			}
-		} else if (gameState == "MENU") {
+		}else if (gameState == "MODO") {
+			mode.tick();
+		}else if (gameState == "MENU") {
 			menu.tick();
 		} else if (gameState == "CONTROLES") {
 			controls.tick();
@@ -241,6 +245,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			g.drawImage(TeamA.logo, 24 * SCALE, 2 * SCALE, 16 * SCALE, 16 * SCALE, null);
 			g.drawImage(TeamB.logo, 70 * SCALE, 2 * SCALE, 16 * SCALE, 16 * SCALE, null);
 		}
+		
+		if(gameState == "MODO") {
+			mode.render(g);
+		}
 
 		if (gameState == "MENU") {
 			menu.render(g);
@@ -252,6 +260,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			g2.setColor(new Color(0, 0, 0, 100));
 			g2.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
 			g2.setFont(new Font("Arial", Font.BOLD, 8 * SCALE));
+			g.setColor(Color.white);
 			g2.drawString("" + TeamA.finalGol, 46 * SCALE, 60 * SCALE);
 			g2.drawString(TeamB.finalGol + "", 62 * SCALE, 60 * SCALE);
 			g2.drawString(" X ", 52 * SCALE, 60 * SCALE);
@@ -259,6 +268,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			g2.drawImage(TeamB.logo, 69 * SCALE, 50 * SCALE, 16 * SCALE, 16 * SCALE, null);
 		}
 		if (showMessageGameEnd) {
+			g.setColor(Color.white);
 			g.drawString("Press ESC to Return!", 16 * SCALE, 40 * SCALE);
 		}
 
@@ -321,6 +331,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (gameState == "OPCOES") {
 				options.up = true;
 			}
+			if(gameState == "MODO") {
+				mode.up = true;
+			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			TeamA.down = true;
@@ -329,6 +342,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			}
 			if (gameState == "OPCOES") {
 				options.down = true;
+			}
+			if(gameState == "MODO") {
+				mode.down = true;
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
@@ -346,6 +362,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (gameState == "OPCOES") {
 				options.up = true;
 			}
+			if(gameState == "MODO") {
+				mode.up = true;
+			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			TeamB.down = true;
@@ -354,6 +373,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			}
 			if (gameState == "OPCOES") {
 				options.down = true;
+			}
+			if(gameState == "MODO") {
+				mode.down = true;
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -385,6 +407,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (gameState == "OPCOES") {
 				options.enter = true;
 			}
+			if(gameState == "MODO") {
+				mode.enter = true;
+			}
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_B) {
@@ -403,12 +428,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (gameState == "END GAME") {
 				showMessageGameEnd = false;
 				gameState = "MENU";
-				menu.isRun = false;
+				Menu.isRun = false;
 			}
 
 			if (gameState == "INICIO") {
 				gameState = "MENU";
-				menu.isRun = true;
+				Menu.isRun = true;
 			}
 		}
 	}

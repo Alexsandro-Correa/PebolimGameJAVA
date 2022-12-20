@@ -13,14 +13,12 @@
     <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
-    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.TeamB"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.field.Tile"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.TeamA"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.field.Field"/>
     <fullyQualifiedTypeName name="java.awt.Rectangle"/>
-    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperB"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperA"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.sprites.Sprites"/>
     <fullyQualifiedTypeName name="java.awt.Graphics2D"/>
@@ -28,8 +26,10 @@
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="java.awt.Toolkit"/>
-    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.Game"/>
     <fullyQualifiedTypeName name="java.awt.Font"/>
     <fullyQualifiedTypeName name="java.awt.Graphics"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.Sounds"/>
+    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.Game"/>
+    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.TeamB"/>
+    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperB"/>
 </qualifiedTypeNameHistroy>

@@ -15,7 +15,7 @@ public class Menu {
 	public int currentOption = 0;
 	public int maxOption = options.length - 1;
 	public boolean up, down, enter;
-	public boolean isRun = false;
+	public static boolean isRun = false;
 
 	private static Sprites sprite = new Sprites("/backgroundinicio.png");
 	public static BufferedImage background = Menu.sprite.getSprite(0, 0, 80, 97);
@@ -40,8 +40,8 @@ public class Menu {
 		if (enter) {
 			enter = false;
 			if (options[currentOption] == "Iniciar") {
-				Game.gameState = "INICIO";
-
+				Game.gameState = "MODO";
+			
 			} else if (options[currentOption] == "Controles") {
 				Game.gameState = "CONTROLES";
 
