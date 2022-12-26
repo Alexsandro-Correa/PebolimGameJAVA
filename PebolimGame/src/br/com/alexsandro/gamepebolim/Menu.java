@@ -10,7 +10,7 @@ import br.com.alexsandro.gamepebolim.sprites.Sprites;
 
 public class Menu {
 
-	public String[] options = { "Iniciar", "Controles","Opcoes","Creditos", "Sair" };
+	public String[] options = { "Iniciar", "Controles", "Opcoes", "Creditos", "Sair" };
 
 	public int currentOption = 0;
 	public int maxOption = options.length - 1;
@@ -41,7 +41,7 @@ public class Menu {
 			enter = false;
 			if (options[currentOption] == "Iniciar") {
 				Game.gameState = "MODO";
-			
+
 			} else if (options[currentOption] == "Controles") {
 				Game.gameState = "CONTROLES";
 
@@ -71,7 +71,6 @@ public class Menu {
 		g.setFont(new Font("Arial", Font.BOLD, 8 * Game.SCALE));
 		g.drawString("Peb  lim Game", 29 * Game.SCALE, 29 * Game.SCALE);
 		g.drawImage(ballIcon, 44 * Game.SCALE, 25 * Game.SCALE, 4 * Game.SCALE, 4 * Game.SCALE, null);
-		// Menu Options
 
 		g.setColor(new Color(110, 255, 255));
 		g.setFont(new Font("Monospaced", Font.BOLD, 6 * Game.SCALE));

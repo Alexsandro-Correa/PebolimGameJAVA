@@ -24,11 +24,11 @@ public class GoalkeeperA extends Entity {
 	}
 
 	public void tick() {
-		
+
 		if (up == true && movedUp == true) {
 			movedDown = true;
 			y--;
-			if (y <= 27) {
+			if (y <= 47) {
 				movedUp = false;
 			}
 		}
@@ -36,20 +36,23 @@ public class GoalkeeperA extends Entity {
 		if (down == true && movedDown == true) {
 			movedUp = true;
 			y++;
-			if (y > 85) {
+			if (y > 67) {
 				movedDown = false;
 			}
 		}
 	}
-	
+
 	public void render(Graphics g) {
-		
-		if(GoalkeeperA.right == true) {
-			g.drawImage(GoalkeeperA.rightKeeperA, getX()*Game.SCALE, getY()*Game.SCALE,16*Game.SCALE,16*Game.SCALE, null);
+
+		if (GoalkeeperA.right == true) {
+			g.drawImage(GoalkeeperA.rightKeeperA, getX() * Game.SCALE, getY() * Game.SCALE, 16 * Game.SCALE,
+					16 * Game.SCALE, null);
 		} else if (GoalkeeperA.left == true) {
-			g.drawImage(GoalkeeperA.leftKeeperA, getX()*Game.SCALE, getY()*Game.SCALE,16*Game.SCALE,16*Game.SCALE, null);
+			g.drawImage(GoalkeeperA.leftKeeperA, getX() * Game.SCALE, getY() * Game.SCALE, 16 * Game.SCALE,
+					16 * Game.SCALE, null);
 		} else if (GoalkeeperA.right == false && GoalkeeperA.left == false) {
-			g.drawImage(GoalkeeperA.centerKeeperA,getX()*Game.SCALE, getY()*Game.SCALE,16*Game.SCALE,16*Game.SCALE, null);
+			g.drawImage(GoalkeeperA.centerKeeperA, getX() * Game.SCALE, getY() * Game.SCALE, 16 * Game.SCALE,
+					16 * Game.SCALE, null);
 		}
 	}
 

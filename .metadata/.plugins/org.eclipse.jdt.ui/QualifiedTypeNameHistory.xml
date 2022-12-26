@@ -29,7 +29,7 @@
     <fullyQualifiedTypeName name="java.awt.Font"/>
     <fullyQualifiedTypeName name="java.awt.Graphics"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.Sounds"/>
-    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.Game"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.TeamB"/>
     <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.players.GoalkeeperB"/>
+    <fullyQualifiedTypeName name="br.com.alexsandro.gamepebolim.Game"/>
 </qualifiedTypeNameHistroy>

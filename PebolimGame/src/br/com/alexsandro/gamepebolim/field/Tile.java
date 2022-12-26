@@ -13,21 +13,21 @@ public class Tile {
 	public static BufferedImage P4 = Game.sprite.getSprite(49, 48, 16, 16);
 	public static BufferedImage P5 = Game.sprite.getSprite(49, 64, 16, 16);
 	public static BufferedImage P6 = Game.sprite.getSprite(49, 80, 16, 16);
-	
+
 	public static BufferedImage P7 = Game.sprite.getSprite(65, 0, 16, 16);
 	public static BufferedImage P8 = Game.sprite.getSprite(65, 16, 16, 16);
 	public static BufferedImage P9 = Game.sprite.getSprite(65, 32, 16, 16);
 	public static BufferedImage P10 = Game.sprite.getSprite(65, 48, 16, 16);
 	public static BufferedImage P11 = Game.sprite.getSprite(65, 64, 16, 16);
 	public static BufferedImage P12 = Game.sprite.getSprite(65, 80, 16, 16);
-	
+
 	public static BufferedImage P13 = Game.sprite.getSprite(81, 0, 16, 16);
 	public static BufferedImage P14 = Game.sprite.getSprite(81, 16, 16, 16);
 	public static BufferedImage P15 = Game.sprite.getSprite(81, 32, 16, 16);
 	public static BufferedImage P16 = Game.sprite.getSprite(81, 48, 16, 16);
 	public static BufferedImage P17 = Game.sprite.getSprite(81, 64, 16, 16);
 	public static BufferedImage P18 = Game.sprite.getSprite(81, 80, 16, 16);
-	
+
 	public static BufferedImage P19 = Game.sprite.getSprite(97, 0, 16, 16);
 	public static BufferedImage P20 = Game.sprite.getSprite(97, 16, 16, 16);
 	public static BufferedImage P21 = Game.sprite.getSprite(97, 32, 16, 16);
@@ -46,7 +46,7 @@ public class Tile {
 	public static BufferedImage P37 = Game.sprite.getSprite(129, 16, 16, 16);
 	public static BufferedImage P38 = Game.sprite.getSprite(129, 32, 16, 16);
 	public static BufferedImage P39 = Game.sprite.getSprite(129, 48, 16, 16);
-	
+
 	public static BufferedImage P40 = Game.sprite.getSprite(0, 80, 16, 16);
 	public static BufferedImage P41 = Game.sprite.getSprite(16, 80, 16, 16);
 	public static BufferedImage P42 = Game.sprite.getSprite(32, 80, 16, 16);
@@ -61,7 +61,7 @@ public class Tile {
 	}
 
 	public void render(Graphics g) {
-		g.drawImage(sprite, x*Game.SCALE, y*Game.SCALE,16*Game.SCALE,16*Game.SCALE, null);
+		g.drawImage(sprite, x * Game.SCALE, y * Game.SCALE, 16 * Game.SCALE, 16 * Game.SCALE, null);
 	}
 
 }

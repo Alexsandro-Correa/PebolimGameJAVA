@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="isR"/>
+		<item key="selection" value="UP"/>
 		<list key="findhistory">
+			<item value="up"/>
+			<item value="SPA"/>
 			<item value="isR"/>
 			<item value="press"/>
 			<item value="9F9F9F"/>

@@ -26,7 +26,7 @@ public class Field {
 					int pixelAtual = pixels[xx + (yy * map.getWidth())];
 
 					if (pixelAtual == 0xFF7C3E78) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx*16,yy*16, Tile.P1);
+						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P1);
 					} else if (pixelAtual == 0xFF606060) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P2);
 					} else if (pixelAtual == 0xFF303030) {
@@ -37,7 +37,7 @@ public class Field {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P5);
 					} else if (pixelAtual == 0xFFA1A1A1) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P6);
-						
+
 					} else if (pixelAtual == 0xFFFF7F7F) {
 						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P7);
 					} else if (pixelAtual == 0xFFFFB27F) {
@@ -50,8 +50,8 @@ public class Field {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P11);
 					} else if (pixelAtual == 0xFFA5FF7F) {
 						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P12);
-						
-					}else if (pixelAtual == 0xFFFF0022) {
+
+					} else if (pixelAtual == 0xFFFF0022) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P13);
 					} else if (pixelAtual == 0xFFFF0033) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P36);
@@ -62,12 +62,12 @@ public class Field {
 					} else if (pixelAtual == 0xFFFF0066) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P38);
 					} else if (pixelAtual == 0xFFFF0077) {
-						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P12);	
-					}	else if (pixelAtual == 0xFFFF0088) {
+						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P12);
+					} else if (pixelAtual == 0xFFFF0088) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P19);
 					} else if (pixelAtual == 0xFFFF0099) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P24);
-						
+
 					} else if (pixelAtual == 0xFF7FFF8E) {
 						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P13);
 					} else if (pixelAtual == 0xFF7FFFC5) {
@@ -80,7 +80,7 @@ public class Field {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P17);
 					} else if (pixelAtual == 0xFF7C435D) {
 						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P18);
-						
+
 					} else if (pixelAtual == 0xFF4CFF22) {
 						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P19);
 					} else if (pixelAtual == 0xFF76477C) {
@@ -93,7 +93,7 @@ public class Field {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P23);
 					} else if (pixelAtual == 0xFF4CFF44) {
 						tiles[xx + (yy * WIDTH)] = new TileColision(xx * 16, yy * 16, Tile.P24);
-						
+
 					} else if (pixelAtual == 0xFF627C4C) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P25);
 					} else if (pixelAtual == 0xFF4CFF66) {
@@ -106,7 +106,7 @@ public class Field {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P29);
 					} else if (pixelAtual == 0xFF7F593F) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P30);
-						
+
 					} else if (pixelAtual == 0xFF00FFFF) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P36);
 					} else if (pixelAtual == 0xFF0094FF) {
@@ -119,15 +119,15 @@ public class Field {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P37);
 					} else if (pixelAtual == 0xFF0000DC) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P38);
-						
+
 					} else if (pixelAtual == 0xFFB6FF20) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P40);
-					}else if (pixelAtual == 0xFFB6FF22) {
+					} else if (pixelAtual == 0xFFB6FF22) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P41);
-					}else if (pixelAtual == 0xFFB6FF28) {
+					} else if (pixelAtual == 0xFFB6FF28) {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P42);
-						
-					}else {
+
+					} else {
 						tiles[xx + (yy * WIDTH)] = new Tile(xx * 16, yy * 16, Tile.P39);
 					}
 				}

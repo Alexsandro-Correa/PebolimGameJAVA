@@ -9,7 +9,7 @@ public class TeamB extends Entity {
 
 	public int width, height;
 	public static boolean up = false, down = false, left = false, right = false, movedUp = true, movedDown = true;
-	public static double speed = 0.1;
+	public static double speed = 0.05;
 	public static byte gol = 0, maxGol = 5, finalGol;
 	public static boolean cpu = false;
 
@@ -30,49 +30,9 @@ public class TeamB extends Entity {
 
 	public void tick() {
 
-		if (cpu) {
-			for (int i = 0; i < Game.teamB.length; i++) {
-				if (calculateDistance(Game.teamB[i].getX(), Game.teamB[i].getY(), Game.ball.getX(),
-						Game.ball.getY()) < 18) {
-					up = true;
-					down = false;
-
-					if (Game.ball.isCollidingTb(getX(), getY())) {
-						up = false;
-						if (Game.rand.nextInt(100) < 60) {
-							left = true;
-
-						} else {
-							right = true;
-						}
-					} else {
-						right = false;
-						left = false;
-					}
-
-				} else if (calculateDistance(Game.teamB[i].getX(), Game.teamB[i].getY(), Game.ball.getX(),
-						Game.ball.getY()) > 18) {
-					down = true;
-					up = false;
-
-					if (Game.ball.isCollidingTb(getX(), getY())) {
-						down = false;
-						if (Game.rand.nextInt(100) < 60) {
-							left = true;
-							right = false;
-						} else {
-							right = true;
-							left = false;
-
-						}
-					} else {
-						right = false;
-						left = false;
-					}
-				}
-			}
-		}
-
+		iA();
+		// left = false;
+		// right = false;
 		if (up == true && movedUp == true)
 
 		{
@@ -96,6 +56,44 @@ public class TeamB extends Entity {
 				movedDown = false;
 			}
 		}
+	}
+
+	public void iA() {
+
+		if (cpu) {
+			speed = 0.04;
+			for (int i = 0; i < Game.teamB.length; i++) {
+				if (Game.teamB[i].y > Game.ball.y - 7 && Game.teamB[0].y < Game.ball.y + 15) {
+					if (!Game.ball.isCollidingTb((int) Game.teamB[0].x, (int) Game.teamB[0].y)) {
+						down = true;
+						up = false;
+					}
+				}
+
+				if (Game.teamB[i].y > Game.ball.y + 15 && Game.teamB[0].y < Game.ball.y + 30) {
+					if (!Game.ball.isCollidingTb((int) Game.teamB[0].x, (int) Game.teamB[0].y)) {
+						up = true;
+						down = false;
+					}
+				}
+			}
+		}
+
+		if (Game.ball.isCollidingTb((int) Game.teamB[0].x, (int) Game.teamB[0].y)) {
+			up = false;
+			down = false;
+			if (Game.rand.nextInt(100) < 70) {
+				left = true;
+				right = false;
+			} else {
+				right = true;
+				left = false;
+			}
+		} else {
+			left = false;
+			right = false;
+		}
+
 	}
 
 	public void render(Graphics g) {

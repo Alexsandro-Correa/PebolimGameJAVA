@@ -74,7 +74,6 @@ public class Mode {
 		g.setFont(new Font("Arial", Font.BOLD, 8 * Game.SCALE));
 		g.drawString("Peb  lim Game", 29 * Game.SCALE, 29 * Game.SCALE);
 		g.drawImage(ballIcon, 44 * Game.SCALE, 25 * Game.SCALE, 4 * Game.SCALE, 4 * Game.SCALE, null);
-		// Menu Options
 
 		g.setFont(new Font("Monospaced", Font.BOLD, 6 * Game.SCALE));
 		g.setColor(Color.white);

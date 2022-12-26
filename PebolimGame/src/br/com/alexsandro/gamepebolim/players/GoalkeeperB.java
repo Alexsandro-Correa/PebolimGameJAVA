@@ -10,6 +10,7 @@ public class GoalkeeperB extends Entity {
 	public int width, height;
 	public static boolean up = false, down = false, left = false, right = false, movedUp = true, movedDown = true;
 	public static boolean cpu = true;
+	public static double speed = 0.8;
 
 	public static BufferedImage rightKeeperB;
 	public static BufferedImage leftKeeperB;
@@ -26,55 +27,59 @@ public class GoalkeeperB extends Entity {
 
 	public void tick() {
 
-		if (cpu) {
-			if (getX() < Game.ball.getX() +50) {
-				if (calculateDistance(getX(), getY(), Game.ball.getX(), Game.ball.getY()) < 10) {
-					up = true;
-					down = false;
-
-					if (Game.ball.isCollidingGb(getX(), getY())) {
-						up = false;
-						left = true;
-
-					} else {
-						left = false;
-					}
-
-				} else if (calculateDistance(getX(), getY(), Game.ball.getX(), Game.ball.getY()) > 10) {
-					down = true;
-					up = false;
-
-					if (Game.ball.isCollidingGb(getX(), getY())) {
-						down = false;
-						left = true;
-					} else {
-						left = false;
-					}
-				}
-			}else {
-				if(y >= 56) {
-					movedUp = true;
-				}
+		iA();
+		
+		if (up == true && movedUp == true) {
+			movedDown = true;
+			y-=speed;
+			if (y <= 47) {
+				movedUp = false;
 			}
+		}
 
-			if (up == true && movedUp == true) {
-				movedDown = true;
-				y--;
-				if (y <= 47) {
-					movedUp = false;
-				}
-			}
-
-			if (down == true && movedDown == true) {
-				movedUp = true;
-				y++;
-				if (y > 67) {
-					movedDown = false;
-				}
+		if (down == true && movedDown == true) {
+			movedUp = true;
+			y+=speed;
+			if (y > 67) {
+				movedDown = false;
 			}
 		}
 	}
+	
+	public void iA() {
+		if (cpu) {
+			for (int i = 0; i < Game.teamB.length; i++) {
+				if (Game.keeperB.y > Game.ball.y - 7 && Game.keeperB.y < Game.ball.y + 7) {
+					if (!Game.ball.isCollidingGb((int) Game.keeperB.x, (int) Game.keeperB.y)) {
+						System.out.println("Aqui1");
+						up = true;
+						down = false;
+					}
+				}
 
+				if (Game.teamB[i].y > Game.keeperB.y + 13 && Game.keeperB.y < Game.ball.y - 7) {
+					if (!Game.ball.isCollidingGb((int) Game.teamB[0].x, (int) Game.teamB[0].y)) {
+						up = false;
+						down = true;
+						System.out.println("Aqui2");
+					}
+				}
+			}
+		}
+
+		if (Game.ball.isCollidingGb((int) Game.keeperB.x, (int) Game.keeperB.y)) {
+			up = false;
+			down = false;
+			left = true;
+			right = false;
+			
+		} else {
+			left = false;
+			right = false;
+		} // lógica de chute aqui
+
+	}
+	
 	public void render(Graphics g) {
 
 		if (GoalkeeperB.right == true) {
