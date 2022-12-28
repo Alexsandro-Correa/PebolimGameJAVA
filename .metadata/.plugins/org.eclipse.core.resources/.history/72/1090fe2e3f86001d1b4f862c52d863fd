@@ -1,0 +1,10 @@
+package br.com.alexsandro.gamepebolim.sprites;
+
+public class Logos {
+
+	public Logos() {
+		
+	}
+
+	
+}

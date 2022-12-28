@@ -1,0 +1,10 @@
+package br.com.alexsandro.gamepebolim.sprites;
+
+import java.awt.image.BufferedImage;
+
+public class Logos {
+
+	public static BufferedImage gre;
+
+	
+}

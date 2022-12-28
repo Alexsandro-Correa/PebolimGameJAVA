@@ -1,0 +1,371 @@
+package br.com.alexsandro.gamepebolim;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
+import br.com.alexsandro.gamepebolim.players.TeamB;
+import br.com.alexsandro.gamepebolim.sprites.Logos;
+import br.com.alexsandro.gamepebolim.sprites.Sprites;
+import br.com.alexsandro.gamepebolim.sprites.UniformsB;
+
+public class SelectTeamB {
+
+	public String[] options = { "gre", "ipa", "pal", "sao", "san", "cor", "cru", "cam", "ctb", "cap", "fla", "vas",
+			"bot", "flu", "bra", "arg", "fra", "ita", "ale", "ing", "mil", "imi", "bar", "psg", "mad", "aja", "cit",
+			"uni", "jap", "ara" };
+
+	public int currentOption = 0;
+	public int maxOption = options.length - 1;
+	public boolean up, down, enter;
+	public static boolean isRun = false;
+
+	private static Sprites sprite = new Sprites("/backgroundinicio.png");
+	public static BufferedImage background = SelectTeamB.sprite.getSprite(0, 0, 80, 97);
+	public static BufferedImage ballIcon = Game.sprite.getSprite(32, 64, 16, 16);
+
+	public void tick() {
+		if (up) {
+			up = false;
+			currentOption--;
+			if (currentOption < 0) {
+				currentOption = maxOption;
+			}
+		}
+
+		if (down) {
+			down = false;
+			currentOption++;
+			if (currentOption > maxOption) {
+				currentOption = 0;
+			}
+		}
+		if (enter) {
+			enter = false;
+			if (options[currentOption] == "gre") {
+				TeamB.centerPlayerB = UniformsB.gre;
+				TeamB.rightPlayerB = UniformsB.greRight;
+				TeamB.leftPlayerB = UniformsB.greLeft;
+				TeamB.logo = Logos.gre;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "ipa") {
+				TeamB.centerPlayerB = UniformsB.ipa;
+				TeamB.rightPlayerB = UniformsB.ipaRight;
+				TeamB.leftPlayerB = UniformsB.ipaLeft;
+				TeamB.logo = Logos.ipa;
+				Game.gameState = "INICIO";
+				
+			} else if (options[currentOption] == "pal") {
+				TeamB.centerPlayerB = UniformsB.pal;
+				TeamB.rightPlayerB = UniformsB.palRight;
+				TeamB.leftPlayerB = UniformsB.palLeft;
+				TeamB.logo = Logos.pal;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "sao") {
+				TeamB.centerPlayerB = UniformsB.sao;
+				TeamB.rightPlayerB = UniformsB.saoRight;
+				TeamB.leftPlayerB = UniformsB.saoLeft;
+				TeamB.logo = Logos.sao;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "san") {
+				TeamB.centerPlayerB = UniformsB.san;
+				TeamB.rightPlayerB = UniformsB.sanRight;
+				TeamB.leftPlayerB = UniformsB.sanLeft;
+				TeamB.logo = Logos.san;
+				Game.gameState = "INICIO";
+				
+			} else if (options[currentOption] == "cor") {
+				TeamB.centerPlayerB = UniformsB.cor;
+				TeamB.rightPlayerB = UniformsB.corRight;
+				TeamB.leftPlayerB = UniformsB.corLeft;
+				TeamB.logo = Logos.cor;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "cru") {
+				TeamB.centerPlayerB = UniformsB.cru;
+				TeamB.rightPlayerB = UniformsB.cruRight;
+				TeamB.leftPlayerB = UniformsB.cruLeft;
+				TeamB.logo = Logos.cru;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "cam") {
+				TeamB.centerPlayerB = UniformsB.cam;
+				TeamB.rightPlayerB = UniformsB.camRight;
+				TeamB.leftPlayerB = UniformsB.camLeft;
+				TeamB.logo = Logos.cam;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "ctb") {
+				TeamB.centerPlayerB = UniformsB.ctb;
+				TeamB.rightPlayerB = UniformsB.ctbRight;
+				TeamB.leftPlayerB = UniformsB.ctbLeft;
+				TeamB.logo = Logos.ctb;
+				Game.gameState = "INICIO";
+				
+			} else if (options[currentOption] == "cap") {
+				TeamB.centerPlayerB = UniformsB.cap;
+				TeamB.rightPlayerB = UniformsB.capRight;
+				TeamB.leftPlayerB = UniformsB.capLeft;
+				TeamB.logo = Logos.cap;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "fla") {
+				TeamB.centerPlayerB = UniformsB.fla;
+				TeamB.rightPlayerB = UniformsB.flaRight;
+				TeamB.leftPlayerB = UniformsB.flaLeft;
+				TeamB.logo = Logos.fla;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "vas") {
+				TeamB.centerPlayerB = UniformsB.vas;
+				TeamB.rightPlayerB = UniformsB.vasRight;
+				TeamB.leftPlayerB = UniformsB.vasLeft;
+				TeamB.logo = Logos.vas;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "bot") {
+				TeamB.centerPlayerB = UniformsB.bot;
+				TeamB.rightPlayerB = UniformsB.botRight;
+				TeamB.leftPlayerB = UniformsB.botLeft;
+				TeamB.logo = Logos.bot;
+				Game.gameState = "INICIO";
+				
+			} else if (options[currentOption] == "flu") {
+				TeamB.centerPlayerB = UniformsB.flu;
+				TeamB.rightPlayerB = UniformsB.fluRight;
+				TeamB.leftPlayerB = UniformsB.fluLeft;
+				TeamB.logo = Logos.flu;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "bra") {
+				TeamB.centerPlayerB = UniformsB.bra;
+				TeamB.rightPlayerB = UniformsB.braRight;
+				TeamB.leftPlayerB = UniformsB.braLeft;
+				TeamB.logo = Logos.bra;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "arg") {
+				TeamB.centerPlayerB = UniformsB.arg;
+				TeamB.rightPlayerB = UniformsB.argRight;
+				TeamB.leftPlayerB = UniformsB.argLeft;
+				TeamB.logo = Logos.arg;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "fra") {
+				TeamB.centerPlayerB = UniformsB.fra;
+				TeamB.rightPlayerB = UniformsB.fraRight;
+				TeamB.leftPlayerB = UniformsB.fraLeft;
+				TeamB.logo = Logos.fra;
+				Game.gameState = "INICIO";
+				
+			} else if (options[currentOption] == "ita") {
+				TeamB.centerPlayerB = UniformsB.ita;
+				TeamB.rightPlayerB = UniformsB.itaRight;
+				TeamB.leftPlayerB = UniformsB.itaLeft;
+				TeamB.logo = Logos.ita;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "ale") {
+				TeamB.centerPlayerB = UniformsB.ale;
+				TeamB.rightPlayerB = UniformsB.aleRight;
+				TeamB.leftPlayerB = UniformsB.aleLeft;
+				TeamB.logo = Logos.ale;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "ing") {
+				TeamB.centerPlayerB = UniformsB.ing;
+				TeamB.rightPlayerB = UniformsB.ingRight;
+				TeamB.leftPlayerB = UniformsB.ingLeft;
+				TeamB.logo = Logos.ing;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "mil") {
+				TeamB.centerPlayerB = UniformsB.mil;
+				TeamB.rightPlayerB = UniformsB.milRight;
+				TeamB.leftPlayerB = UniformsB.milLeft;
+				TeamB.logo = Logos.mil;
+				Game.gameState = "INICIO";
+				
+			} else if (options[currentOption] == "imi") {
+				TeamB.centerPlayerB = UniformsB.imi;
+				TeamB.rightPlayerB = UniformsB.imiRight;
+				TeamB.leftPlayerB = UniformsB.imiLeft;
+				TeamB.logo = Logos.imi;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "bar") {
+				TeamB.centerPlayerB = UniformsB.bar;
+				TeamB.rightPlayerB = UniformsB.barRight;
+				TeamB.leftPlayerB = UniformsB.barLeft;
+				TeamB.logo = Logos.bar;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "psg") {
+				TeamB.centerPlayerB = UniformsB.psg;
+				TeamB.rightPlayerB = UniformsB.psgRight;
+				TeamB.leftPlayerB = UniformsB.psgLeft;
+				TeamB.logo = Logos.psg;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "mad") {
+				TeamB.centerPlayerB = UniformsB.mad;
+				TeamB.rightPlayerB = UniformsB.madRight;
+				TeamB.leftPlayerB = UniformsB.madLeft;
+				TeamB.logo = Logos.mad;
+				Game.gameState = "INICIO";
+				
+			} else if (options[currentOption] == "aja") {
+				TeamB.centerPlayerB = UniformsB.aja;
+				TeamB.rightPlayerB = UniformsB.ajaRight;
+				TeamB.leftPlayerB = UniformsB.ajaLeft;
+				TeamB.logo = Logos.aja;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "cit") {
+				TeamB.centerPlayerB = UniformsB.cit;
+				TeamB.rightPlayerB = UniformsB.citRight;
+				TeamB.leftPlayerB = UniformsB.citLeft;
+				TeamB.logo = Logos.cit;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "uni") {
+				TeamB.centerPlayerB = UniformsB.uni;
+				TeamB.rightPlayerB = UniformsB.uniRight;
+				TeamB.leftPlayerB = UniformsB.uniLeft;
+				TeamB.logo = Logos.uni;
+				Game.gameState = "INICIO";
+
+			} else if (options[currentOption] == "jap") {
+				TeamB.centerPlayerB = UniformsB.jap;
+				TeamB.rightPlayerB = UniformsB.japRight;
+				TeamB.leftPlayerB = UniformsB.japLeft;
+				TeamB.logo = Logos.jap;
+				Game.gameState = "INICIO";
+				
+			} else if (options[currentOption] == "ara") {
+				TeamB.centerPlayerB = UniformsB.ara;
+				TeamB.rightPlayerB = UniformsB.araRight;
+				TeamB.leftPlayerB = UniformsB.araLeft;
+				TeamB.logo = Logos.ara;
+				Game.gameState = "INICIO";
+			}
+		}
+	}
+
+	public void render(Graphics g) {
+
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setColor(new Color(0, 0, 0, 200));
+		g2.fillRect(0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE);
+		g.drawImage(background, 0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE, null);
+
+		g2.setColor(new Color(0, 0, 0, 80));
+		g2.fillRect(0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE);
+
+		g.setColor(new Color(255, 255, 255));
+		g.setFont(new Font("Arial", Font.BOLD, 8 * Game.SCALE));
+		g.drawString("Selecione o Time B :", 20 * Game.SCALE, 16 * Game.SCALE);
+	
+		
+		g.setColor(Color.green);
+		if (options[currentOption] == "gre") {
+			g.fillRect(27*Game.SCALE, 20*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "ipa") {
+			g.fillRect(27*Game.SCALE, 30*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "pal") {
+			g.fillRect(27*Game.SCALE, 40*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "sao") {
+			g.fillRect(27*Game.SCALE, 50*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "san") {
+			g.fillRect(27*Game.SCALE, 60*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		}else if (options[currentOption] == "cor") {
+			g.fillRect(27*Game.SCALE, 70*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "cru") {
+			g.fillRect(27*Game.SCALE, 80*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "cam") {
+			g.fillRect(27*Game.SCALE, 90*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "ctb") {
+			g.fillRect(41*Game.SCALE, 20*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		}else if (options[currentOption] == "cap") {
+			g.fillRect(41*Game.SCALE, 30*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "fla") {
+			g.fillRect(41*Game.SCALE, 40*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "vas") {
+			g.fillRect(41*Game.SCALE, 50*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "bot") {
+			g.fillRect(41*Game.SCALE, 60*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		}else if (options[currentOption] == "flu") {
+			g.fillRect(41*Game.SCALE, 70*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "bra") {
+			g.fillRect(41*Game.SCALE, 80*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "arg") {
+			g.fillRect(41*Game.SCALE, 90*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "fra") {
+			g.fillRect(55*Game.SCALE, 20*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		}else if (options[currentOption] == "ita") {
+			g.fillRect(55*Game.SCALE, 30*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "ale") {
+			g.fillRect(55*Game.SCALE, 40*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "ing") {
+			g.fillRect(55*Game.SCALE, 50*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "mil") {
+			g.fillRect(55*Game.SCALE, 60*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		}else if (options[currentOption] == "imi") {
+			g.fillRect(55*Game.SCALE, 70*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "bar") {
+			g.fillRect(55*Game.SCALE, 80*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "psg") {
+			g.fillRect(69*Game.SCALE, 20*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "mad") {
+			g.fillRect(69*Game.SCALE, 30*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		}else if (options[currentOption] == "aja") {
+			g.fillRect(69*Game.SCALE, 40*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "cit") {
+			g.fillRect(69*Game.SCALE, 50*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "uni") {
+			g.fillRect(69*Game.SCALE, 60*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		} else if (options[currentOption] == "jap") {
+			g.fillRect(69*Game.SCALE, 70*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		}else if (options[currentOption] == "ara") {
+			g.fillRect(69*Game.SCALE, 80*Game.SCALE, 15*Game.SCALE, 11*Game.SCALE);
+		}
+		
+		g.drawImage(Logos.gre, 26 * Game.SCALE, 18 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.ipa, 26 * Game.SCALE, 28 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.pal, 26 * Game.SCALE, 38 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.sao, 26 * Game.SCALE, 48 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.san, 26 * Game.SCALE, 58 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.cor, 26 * Game.SCALE, 68 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.cru, 26 * Game.SCALE, 78 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.cam, 26 * Game.SCALE, 88 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.ctb, 40 * Game.SCALE, 18 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.cap, 40 * Game.SCALE, 28 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.fla, 40 * Game.SCALE, 38 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.vas, 40 * Game.SCALE, 48 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.bot, 40 * Game.SCALE, 58 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.flu, 40 * Game.SCALE, 68 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.bra, 40 * Game.SCALE, 78 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.arg, 40 * Game.SCALE, 88 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.fra, 54 * Game.SCALE, 18 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.ita, 54 * Game.SCALE, 28 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.ale, 54 * Game.SCALE, 38 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.ing, 54 * Game.SCALE, 48 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.mil, 54 * Game.SCALE, 58 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.imi, 54 * Game.SCALE, 68 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.bar, 54 * Game.SCALE, 78 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.psg, 68 * Game.SCALE, 18 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.mad, 68 * Game.SCALE, 28 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.aja, 68 * Game.SCALE, 38 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.cit, 68 * Game.SCALE, 48 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.uni, 68 * Game.SCALE, 58 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.jap, 68 * Game.SCALE, 68 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+		g.drawImage(Logos.ara, 68 * Game.SCALE, 78 * Game.SCALE,16*Game.SCALE,16*Game.SCALE,null);
+	}
+
+	
+}

@@ -47,12 +47,12 @@ public class Mode {
 				if (options[currentOption] == "VsPlayer") {
 					TeamB.cpu = false;
 					GoalkeeperB.cpu = false;
-					Game.gameState = "INICIO";
+					Game.gameState = "SELECIONARTIMEA";
 
 				} else if (options[currentOption] == "VsIA") {
 					TeamB.cpu = true;
 					GoalkeeperB.cpu = true;
-					Game.gameState = "INICIO";
+					Game.gameState = "SELECIONARTIMEA";
 				}
 			}
 		} else {

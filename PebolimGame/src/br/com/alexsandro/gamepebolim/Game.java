@@ -45,6 +45,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public Credits credits;
 	public static Options options;
 	public Mode mode;
+	public SelectTeamA select;
+	public SelectTeamB selectB;
 
 	public static JFrame frame;
 	public static boolean resizable;
@@ -55,6 +57,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static List<TeamA> tA;
 	public static List<TeamB> tB;
 	public static Sprites sprite;
+	public static Sprites logos;
+	public static Sprites uniform;
 	public static Field field;
 	public static Random rand = new Random();
 	public static Random rand2 = new Random();
@@ -76,6 +80,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		tA = new ArrayList<TeamA>();
 		tB = new ArrayList<TeamB>();
 		sprite = new Sprites("/SpritesPebolim.png");
+		logos = new Sprites("/logos.png");
+		uniform = new Sprites("/times.png");
 		field = new Field("/map.png");
 
 		entities.add(ball = new Ball(80, 64, 4 * SCALE, 4 * SCALE, sprite.getSprite(32, 64, 16, 16)));
@@ -116,6 +122,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		credits = new Credits();
 		options = new Options();
 		mode = new Mode();
+		select = new SelectTeamA();
+		selectB = new SelectTeamB();
+		
 	}
 
 	public static void main(String[] args) {
@@ -134,7 +143,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public void tick() {
 
-		frame.setLocationRelativeTo(null);
+		
 
 		if (Options.sound) {
 			Sounds.fundo.loop();
@@ -147,24 +156,31 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (Game.size == 2) {
 				SCALE = 2;
 				frame.setBounds(0, 0, (112 * SCALE) + 15, (112 * SCALE) + 35);
+				frame.setLocationRelativeTo(null);
 			} else if (Game.size == 3) {
 				SCALE = 3;
 				frame.setBounds(0, 0, (112 * SCALE) + 15, (112 * SCALE) + 38);
+				frame.setLocationRelativeTo(null);
 			} else if (Game.size == 4) {
 				SCALE = 4;
 				frame.setBounds(0, 0, (112 * SCALE) + 15, (112 * SCALE) + 38);
+				frame.setLocationRelativeTo(null);
 			} else if (Game.size == 5) {
 				SCALE = 5;
 				frame.setBounds(0, 0, (112 * SCALE) + 15, (112 * SCALE) + 38);
+				frame.setLocationRelativeTo(null);
 			} else if (Game.size == 6) {
 				SCALE = 6;
 				frame.setBounds(0, 0, (112 * SCALE) + 15, (112 * SCALE) + 35);
+				frame.setLocationRelativeTo(null);
 			} else if (Game.size == 7) {
 				SCALE = 7;
 				frame.setBounds(0, 0, (112 * SCALE) + 15, (112 * SCALE) + 30);
+				frame.setLocationRelativeTo(null);
 			} else if (Game.size == 8) {
 				SCALE = 8;
 				frame.setBounds(0, 0, (112 * SCALE) + 15, (112 * SCALE) + 25);
+				frame.setLocationRelativeTo(null);
 			}
 			resizable = false;
 		}
@@ -200,7 +216,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			}
 		} else if (gameState == "MODO") {
 			mode.tick();
-		} else if (gameState == "MENU") {
+		}else if (gameState == "SELECIONARTIMEA") {
+			select.tick();
+		}else if (gameState == "SELECIONARTIMEB") {
+			selectB.tick();
+		}else if (gameState == "MENU") {
 			menu.tick();
 		} else if (gameState == "CONTROLES") {
 			controls.tick();
@@ -240,12 +260,20 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			g.drawString("" + TeamA.gol, 46 * SCALE, 12 * SCALE);
 			g.drawString(TeamB.gol + "", 61 * SCALE, 12 * SCALE);
 			g.drawString(" : ", 52 * SCALE, 12 * SCALE);
-			g.drawImage(TeamA.logo, 24 * SCALE, 2 * SCALE, 16 * SCALE, 16 * SCALE, null);
-			g.drawImage(TeamB.logo, 70 * SCALE, 2 * SCALE, 16 * SCALE, 16 * SCALE, null);
+			g.drawImage(TeamA.logo, 24 * SCALE, 1 * SCALE, 16 * SCALE, 16 * SCALE, null);
+			g.drawImage(TeamB.logo, 70 * SCALE, 1 * SCALE, 16 * SCALE, 16 * SCALE, null);
 		}
 
 		if (gameState == "MODO") {
 			mode.render(g);
+		}
+		
+		if (gameState == "SELECIONARTIMEA") {
+			select.render(g);
+		}
+		
+		if (gameState == "SELECIONARTIMEB") {
+			selectB.render(g);
 		}
 
 		if (gameState == "MENU") {
@@ -332,6 +360,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (gameState == "MODO") {
 				mode.up = true;
 			}
+			if (gameState == "SELECIONARTIMEA") {
+				select.up = true;
+			}
+			if (gameState == "SELECIONARTIMEB") {
+				selectB.up = true;
+			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			TeamA.down = true;
@@ -343,6 +377,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			}
 			if (gameState == "MODO") {
 				mode.down = true;
+			}
+			if (gameState == "SELECIONARTIMEA") {
+				select.down = true;
+			}
+			if (gameState == "SELECIONARTIMEB") {
+				selectB.down = true;
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
@@ -363,6 +403,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (gameState == "MODO") {
 				mode.up = true;
 			}
+			if (gameState == "SELECIONARTIMEA") {
+				select.up = true;
+			}
+			if (gameState == "SELECIONARTIMEB") {
+				selectB.up = true;
+			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			TeamB.down = true;
@@ -374,6 +420,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			}
 			if (gameState == "MODO") {
 				mode.down = true;
+			}
+			if (gameState == "SELECIONARTIMEA") {
+				select.down = true;
+			}
+			if (gameState == "SELECIONARTIMEB") {
+				selectB.down = true;
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -407,6 +459,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			}
 			if (gameState == "MODO") {
 				mode.enter = true;
+			}
+			if (gameState == "SELECIONARTIMEA") {
+				select.enter = true;
+			}
+			if (gameState == "SELECIONARTIMEB") {
+				selectB.enter = true;
 			}
 		}
 

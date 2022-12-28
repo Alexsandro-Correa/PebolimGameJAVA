@@ -1,0 +1,11 @@
+package br.com.alexsandro.gamepebolim.sprites;
+
+public class Uniforms {
+
+	public Uniforms() {
+
+		
+		
+	}
+
+}

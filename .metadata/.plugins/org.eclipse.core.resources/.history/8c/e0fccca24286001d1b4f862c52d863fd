@@ -1,0 +1,37 @@
+package br.com.alexsandro.gamepebolim.sprites;
+
+import java.awt.image.BufferedImage;
+
+import br.com.alexsandro.gamepebolim.Game;
+
+public class UniformsA {
+
+	public static BufferedImage greA = Game.uniform.getSprite(0, 16, 16, 16);
+	public static BufferedImage greALeft = Game.uniform.getSprite(16, 16, 16, 16);
+	public static BufferedImage greARight= Game.uniform.getSprite(32, 16, 16, 16);
+	
+	public static BufferedImage ipaA = Game.uniform.getSprite(48, 16, 16, 16);
+	public static BufferedImage ipaALeft = Game.uniform.getSprite(64, 16, 16, 16);
+	public static BufferedImage ipaARight = Game.uniform.getSprite(80, 16, 16, 16);	
+	
+	public static BufferedImage palA = Game.uniform.getSprite(96, 16, 16, 16);
+	public static BufferedImage palALeft = Game.uniform.getSprite(112, 16, 16, 16);
+	public static BufferedImage palARight = Game.uniform.getSprite(128, 16, 16, 16);
+	
+	public static BufferedImage saoA = Game.uniform.getSprite(144, 16, 16, 16);
+	public static BufferedImage saoALeft = Game.uniform.getSprite(160, 16, 16, 16);
+	public static BufferedImage saoARight = Game.uniform.getSprite(176, 16, 16, 16);
+	
+	public static BufferedImage sanA = Game.uniform.getSprite(192, 16, 16, 16);
+	public static BufferedImage sanALeft = Game.uniform.getSprite(208, 16, 16, 16);
+	public static BufferedImage sanARight = Game.uniform.getSprite(224, 16, 16, 16);
+	
+	public static BufferedImage corA = Game.uniform.getSprite(240, 16, 16, 16);
+	public static BufferedImage corALeft = Game.uniform.getSprite(256, 16, 16, 16);
+	public static BufferedImage corARight = Game.uniform.getSprite(272, 16, 16, 16);
+	
+	public static BufferedImage cruA = Game.uniform.getSprite(0, 48, 16, 16);
+	public static BufferedImage cruALeft = Game.uniform.getSprite(16, 48, 16, 16);
+	public static BufferedImage cruARight = Game.uniform.getSprite(32, 48, 16, 16);
+
+}

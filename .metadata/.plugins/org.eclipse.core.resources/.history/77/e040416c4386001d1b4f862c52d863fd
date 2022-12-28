@@ -1,0 +1,84 @@
+package br.com.alexsandro.gamepebolim.sprites;
+
+import java.awt.image.BufferedImage;
+
+import br.com.alexsandro.gamepebolim.Game;
+
+public class UniformsA {
+
+	public static BufferedImage greA = Game.uniform.getSprite(0, 16, 16, 16);
+	public static BufferedImage greALeft = Game.uniform.getSprite(16, 16, 16, 16);
+	public static BufferedImage greARight= Game.uniform.getSprite(32, 16, 16, 16);
+	
+	public static BufferedImage ipaA = Game.uniform.getSprite(48, 16, 16, 16);
+	public static BufferedImage ipaALeft = Game.uniform.getSprite(64, 16, 16, 16);
+	public static BufferedImage ipaARight = Game.uniform.getSprite(80, 16, 16, 16);	
+	
+	public static BufferedImage palA = Game.uniform.getSprite(96, 16, 16, 16);
+	public static BufferedImage palALeft = Game.uniform.getSprite(112, 16, 16, 16);
+	public static BufferedImage palARight = Game.uniform.getSprite(128, 16, 16, 16);
+	
+	public static BufferedImage saoA = Game.uniform.getSprite(144, 16, 16, 16);
+	public static BufferedImage saoALeft = Game.uniform.getSprite(160, 16, 16, 16);
+	public static BufferedImage saoARight = Game.uniform.getSprite(176, 16, 16, 16);
+	
+	public static BufferedImage sanA = Game.uniform.getSprite(192, 16, 16, 16);
+	public static BufferedImage sanALeft = Game.uniform.getSprite(208, 16, 16, 16);
+	public static BufferedImage sanARight = Game.uniform.getSprite(224, 16, 16, 16);
+	
+	public static BufferedImage corA = Game.uniform.getSprite(240, 16, 16, 16);
+	public static BufferedImage corALeft = Game.uniform.getSprite(256, 16, 16, 16);
+	public static BufferedImage corARight = Game.uniform.getSprite(272, 16, 16, 16);
+	
+	// 2
+	
+	public static BufferedImage cruA = Game.uniform.getSprite(0, 48, 16, 16);
+	public static BufferedImage cruALeft = Game.uniform.getSprite(16, 48, 16, 16);
+	public static BufferedImage cruARight = Game.uniform.getSprite(32, 48, 16, 16);
+
+	public static BufferedImage camA = Game.uniform.getSprite(48, 48, 16, 16);
+	public static BufferedImage camALeft = Game.uniform.getSprite(64, 48, 16, 16);
+	public static BufferedImage camARight = Game.uniform.getSprite(80, 48, 16, 16);
+	
+	public static BufferedImage ctbA = Game.uniform.getSprite(96, 48, 16, 16);
+	public static BufferedImage ctbALeft = Game.uniform.getSprite(112, 48, 16, 16);
+	public static BufferedImage ctbARight = Game.uniform.getSprite(128, 48, 16, 16);
+	
+	public static BufferedImage capA = Game.uniform.getSprite(144, 48, 16, 16);
+	public static BufferedImage capALeft = Game.uniform.getSprite(160, 48, 16, 16);
+	public static BufferedImage capARight = Game.uniform.getSprite(176, 48, 16, 16);
+	
+	public static BufferedImage flaA = Game.uniform.getSprite(192, 48, 16, 16);
+	public static BufferedImage flaALeft = Game.uniform.getSprite(208, 48, 16, 16);
+	public static BufferedImage flaARight = Game.uniform.getSprite(224, 48, 16, 16);
+	
+	public static BufferedImage vasA = Game.uniform.getSprite(240, 48, 16, 16);
+	public static BufferedImage vasALeft = Game.uniform.getSprite(256, 48, 16, 16);
+	public static BufferedImage vasARight = Game.uniform.getSprite(272, 48, 16, 16);
+	
+	// 3
+	
+	public static BufferedImage botA = Game.uniform.getSprite(0, 80, 16, 16);
+	public static BufferedImage botALeft = Game.uniform.getSprite(16, 80, 16, 16);
+	public static BufferedImage botARight = Game.uniform.getSprite(32, 80, 16, 16);
+	
+	public static BufferedImage fluA = Game.uniform.getSprite(48, 80, 16, 16);
+	public static BufferedImage fluALeft = Game.uniform.getSprite(64, 80, 16, 16);
+	public static BufferedImage fluARight = Game.uniform.getSprite(80, 80, 16, 16);
+	
+	public static BufferedImage braA = Game.uniform.getSprite(96, 80, 16, 16);
+	public static BufferedImage braALeft = Game.uniform.getSprite(112, 80, 16, 16);
+	public static BufferedImage braARight = Game.uniform.getSprite(128, 80, 16, 16);
+	
+	public static BufferedImage argA = Game.uniform.getSprite(144, 80, 16, 16);
+	public static BufferedImage argALeft = Game.uniform.getSprite(160, 80, 16, 16);
+	public static BufferedImage argARight = Game.uniform.getSprite(176, 80, 16, 16);
+	
+	public static BufferedImage fraA = Game.uniform.getSprite(192, 80, 16, 16);
+	public static BufferedImage fraALeft = Game.uniform.getSprite(208, 80, 16, 16);
+	public static BufferedImage fraARight = Game.uniform.getSprite(224, 80, 16, 16);
+	
+	public static BufferedImage itaA = Game.uniform.getSprite(240, 80, 16, 16);
+	public static BufferedImage itaALeft = Game.uniform.getSprite(256, 80, 16, 16);
+	public static BufferedImage itaARight = Game.uniform.getSprite(272, 80, 16, 16);
+}

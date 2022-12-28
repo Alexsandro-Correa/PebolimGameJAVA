@@ -9,8 +9,8 @@ public class GoalkeeperB extends Entity {
 
 	public int width, height;
 	public static boolean up = false, down = false, left = false, right = false, movedUp = true, movedDown = true;
-	public static boolean cpu = true;
-	public static double speed = 0.8;
+	public static boolean cpu = false;
+	public static double speed = 0.6;
 
 	public static BufferedImage rightKeeperB;
 	public static BufferedImage leftKeeperB;
@@ -28,10 +28,10 @@ public class GoalkeeperB extends Entity {
 	public void tick() {
 
 		iA();
-		
+
 		if (up == true && movedUp == true) {
 			movedDown = true;
-			y-=speed;
+			y -= speed;
 			if (y <= 47) {
 				movedUp = false;
 			}
@@ -39,47 +39,47 @@ public class GoalkeeperB extends Entity {
 
 		if (down == true && movedDown == true) {
 			movedUp = true;
-			y+=speed;
+			y += speed;
 			if (y > 67) {
 				movedDown = false;
 			}
 		}
 	}
-	
+
 	public void iA() {
 		if (cpu) {
-			for (int i = 0; i < Game.teamB.length; i++) {
-				if (Game.keeperB.y > Game.ball.y - 7 && Game.keeperB.y < Game.ball.y + 7) {
+			if (Game.keeperB.y >= Game.ball.y - 7 && Game.keeperB.y <= Game.ball.y - 5) {
+				down = false;
+				up = false;
+			} else {
+				if (Game.keeperB.y > Game.ball.y - 6) {
 					if (!Game.ball.isCollidingGb((int) Game.keeperB.x, (int) Game.keeperB.y)) {
-						System.out.println("Aqui1");
 						up = true;
 						down = false;
 					}
 				}
-
-				if (Game.teamB[i].y > Game.keeperB.y + 13 && Game.keeperB.y < Game.ball.y - 7) {
-					if (!Game.ball.isCollidingGb((int) Game.teamB[0].x, (int) Game.teamB[0].y)) {
+				if (Game.keeperB.y < Game.ball.y - 6) {
+					if (!Game.ball.isCollidingGb((int) Game.keeperB.x, (int) Game.keeperB.y)) {
 						up = false;
 						down = true;
-						System.out.println("Aqui2");
 					}
 				}
+
+			}
+			if (Game.ball.isCollidingGb((int) Game.keeperB.x, (int) Game.keeperB.y)) {
+				up = false;
+				down = false;
+				left = true;
+				right = false;
+
+			} else {
+				left = false;
+				right = false;
 			}
 		}
 
-		if (Game.ball.isCollidingGb((int) Game.keeperB.x, (int) Game.keeperB.y)) {
-			up = false;
-			down = false;
-			left = true;
-			right = false;
-			
-		} else {
-			left = false;
-			right = false;
-		} // lógica de chute aqui
-
 	}
-	
+
 	public void render(Graphics g) {
 
 		if (GoalkeeperB.right == true) {
